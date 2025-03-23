@@ -1,8 +1,8 @@
-#Wed Mar 19 19:38:34 ICT 2025
-base.0=D\:\\HK2_Nam3\\Flutter\\ui\\app_food_delivery\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=D\:\\HK2_Nam3\\Flutter\\ui\\app_food_delivery\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=D\:\\HK2_Nam3\\Flutter\\ui\\app_food_delivery\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.3=D\:\\HK2_Nam3\\Flutter\\ui\\app_food_delivery\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+#Sun Mar 23 11:23:05 ICT 2025
+base.0=D\:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=D\:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
+base.3=D\:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=13/classes.dex

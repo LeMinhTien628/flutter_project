@@ -4,7 +4,7 @@
             "outputFile": "com.example.app_food_delivery.app-mergeDebugResources-24:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\HK2_Nam3\\Flutter\\ui\\app_food_delivery\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "D:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:app_food_delivery/constants/app_colors.dart';
 
 class EVoucherScreen extends StatefulWidget {
   const EVoucherScreen({super.key});
@@ -21,7 +21,7 @@ class _EVoucherScreenState extends State<EVoucherScreen> {
             padding: EdgeInsets.all(4),
             margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
             decoration: BoxDecoration(
-              // color: AppColors.background,
+              color: AppColors.background,
               borderRadius: BorderRadius.circular(6),
               border: Border.all(
                 width: 2,

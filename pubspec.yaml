@@ -36,6 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.8
   font_awesome_flutter: ^10.8.0
   #use: import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+  smooth_page_indicator: ^1.2.1
+  #import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+  carousel_slider: ^5.0.0
+  #import 'package:carousel_slider/carousel_slider.dart';
+  intl: ^0.20.2
+  #import 'package:intl/intl.dart';
+
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +65,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

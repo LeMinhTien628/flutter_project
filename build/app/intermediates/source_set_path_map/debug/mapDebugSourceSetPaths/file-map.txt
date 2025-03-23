@@ -18,10 +18,10 @@ com.example.app_food_delivery.app-jetified-lifecycle-process-2.7.0-16 C:\Users\L
 com.example.app_food_delivery.app-jetified-lifecycle-livedata-core-ktx-2.7.0-17 C:\Users\LENOVO\.gradle\caches\8.10.2\transforms\ebeb29d7113d60e59d5e0acf92f847f3\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\res
 com.example.app_food_delivery.app-jetified-annotation-experimental-1.4.0-18 C:\Users\LENOVO\.gradle\caches\8.10.2\transforms\f09a22cdd213028a38958888c7d16e20\transformed\jetified-annotation-experimental-1.4.0\res
 com.example.app_food_delivery.app-core-runtime-2.2.0-19 C:\Users\LENOVO\.gradle\caches\8.10.2\transforms\ff849810dfe34a0ab790c402787c149e\transformed\core-runtime-2.2.0\res
-com.example.app_food_delivery.app-debug-20 D:\HK2_Nam3\Flutter\ui\app_food_delivery\android\app\src\debug\res
-com.example.app_food_delivery.app-main-21 D:\HK2_Nam3\Flutter\ui\app_food_delivery\android\app\src\main\res
-com.example.app_food_delivery.app-pngs-22 D:\HK2_Nam3\Flutter\ui\app_food_delivery\build\app\generated\res\pngs\debug
-com.example.app_food_delivery.app-resValues-23 D:\HK2_Nam3\Flutter\ui\app_food_delivery\build\app\generated\res\resValues\debug
-com.example.app_food_delivery.app-packageDebugResources-24 D:\HK2_Nam3\Flutter\ui\app_food_delivery\build\app\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.app_food_delivery.app-packageDebugResources-25 D:\HK2_Nam3\Flutter\ui\app_food_delivery\build\app\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.app_food_delivery.app-debug-26 D:\HK2_Nam3\Flutter\ui\app_food_delivery\build\app\intermediates\merged_res\debug\mergeDebugResources
+com.example.app_food_delivery.app-debug-20 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\android\app\src\debug\res
+com.example.app_food_delivery.app-main-21 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\android\app\src\main\res
+com.example.app_food_delivery.app-pngs-22 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\build\app\generated\res\pngs\debug
+com.example.app_food_delivery.app-resValues-23 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\build\app\generated\res\resValues\debug
+com.example.app_food_delivery.app-packageDebugResources-24 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\build\app\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.app_food_delivery.app-packageDebugResources-25 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\build\app\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.app_food_delivery.app-debug-26 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\build\app\intermediates\merged_res\debug\mergeDebugResources

@@ -185,10 +185,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: AnimatedContainer(
                               width: 101,
                               duration: Duration(milliseconds: 300),
-                              curve:
-                                  Curves
-                                      .bounceInOut, // vào chậm – bật ra nhanh – rồi nảy nhẹ
-                              padding: EdgeInsets.fromLTRB(24, 6, 24, 6),
+                              curve: Curves.bounceInOut, // vào chậm – bật ra nhanh – rồi nảy nhẹ
+                              padding: EdgeInsets.fromLTRB(20, 6, 20, 6),
                               decoration: BoxDecoration(
                                 color:
                                     selectedButton == 1
@@ -215,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 101,
                               duration: Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
-                              padding: EdgeInsets.fromLTRB(24, 6, 24, 6),
+                              padding: EdgeInsets.fromLTRB(20, 6, 20, 6),
                               decoration: BoxDecoration(
                                 color:
                                     selectedButton == 0

@@ -1,7 +1,10 @@
 import 'package:app_food_delivery/app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  debugPaintSizeEnabled = false;
   runApp(MyApp());
 }
 
@@ -10,6 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      // theme: ThemeData(
+      //   fontFamily: 'BeVietnam',
+      // ),
       color: Colors.white,
       home: MainApp(),
     );

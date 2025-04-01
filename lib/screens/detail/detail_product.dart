@@ -66,7 +66,7 @@ class _DetailProductState extends State<DetailProduct> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 12, right: 12),
+                    padding: EdgeInsets.only(left: 12, right: 12, bottom: 4),
                     child: Text(
                       "Seafood Four Seasons",
                       style: TextStyle(color: AppColors.primary , fontSize: 14, fontWeight: FontWeight.bold),
@@ -105,7 +105,7 @@ class _DetailProductState extends State<DetailProduct> {
                   ),
 
                   Container(
-                    padding: EdgeInsets.only(left: 12, right: 12),
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -160,7 +160,7 @@ class _DetailProductState extends State<DetailProduct> {
                           padding: EdgeInsets.fromLTRB(6, 4, 6, 4),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(2),
+                            borderRadius: BorderRadius.circular(4),
                             border: Border.all(
                               width: 1,
                               color: AppColors.border
@@ -170,6 +170,7 @@ class _DetailProductState extends State<DetailProduct> {
                             mainAxisSize:MainAxisSize.min, //wrap
                             children: [
                               Container(
+                                margin: EdgeInsets.only(right: 4),
                                 child: Image.asset(
                                   "assets/icons/crust.png",
                                   width: 20,
@@ -179,7 +180,7 @@ class _DetailProductState extends State<DetailProduct> {
                               ),
                               Container(
                                 child: Text(
-                                  "Cỡ 7 inch",
+                                  "Đế dày",
                                   style: TextStyle(color: AppColors.textPrimary , fontSize: 12, fontWeight: FontWeight.normal),
 
                                 ),
@@ -205,7 +206,7 @@ class _DetailProductState extends State<DetailProduct> {
                 children: [
                   GestureDetector(
                     onTap:() {
-                      print("Ket thuc trang");
+                      Navigator.pop(context);
                     },
                     child: Container(
                       padding: EdgeInsets.all(8),

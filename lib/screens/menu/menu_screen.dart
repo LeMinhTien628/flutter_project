@@ -33,12 +33,12 @@ import 'package:app_food_delivery/screens/menu/categories_main.dart';
             children: [
                // Button Delivery - Carry Out
               Container(
-                margin: EdgeInsets.only(left: 12, right: 12),
+                margin: EdgeInsets.only(left: 10, right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 130,
+                      width: 128,
                       margin: EdgeInsets.only(top: 4),
                       child: GestureDetector(
                         onTap: () {},
@@ -64,8 +64,7 @@ import 'package:app_food_delivery/screens/menu/categories_main.dart';
                             ]
                           ),
                           child: Text(
-                            selectedButton == 1 ? "Choose Address"
-                                                : "Please Select Store",
+                            selectedButton == 1 ? "Choose Address" : "Please Select Store",
                             style: TextStyle(
                               fontSize: 10,
                               color: AppColors.textPrimary
@@ -99,7 +98,7 @@ import 'package:app_food_delivery/screens/menu/categories_main.dart';
                               child: AnimatedContainer(
                                 duration: Duration(milliseconds: 300),
                                 curve: Curves.bounceInOut, // vào chậm – bật ra nhanh – rồi nảy nhẹ
-                                padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                                padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
                                 decoration: BoxDecoration(
                                   color: selectedButton == 1 ? AppColors.buttonPrimary : AppColors.backgroudGreyBland,
                                   borderRadius: BorderRadius.circular(4),
@@ -120,7 +119,7 @@ import 'package:app_food_delivery/screens/menu/categories_main.dart';
                               child: AnimatedContainer(
                                 duration: Duration(milliseconds: 300),
                                 curve: Curves.easeInOut,
-                                padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                                padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
                                 decoration: BoxDecoration(
                                   color: selectedButton == 0 ? AppColors.buttonPrimary : AppColors.backgroudGreyBland,
                                   borderRadius: BorderRadius.circular(4),

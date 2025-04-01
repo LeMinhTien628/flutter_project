@@ -51,7 +51,7 @@ class _CategoriesSubState extends State<CategoriesSub> {
             ),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
+              physics: widget.selectedItem == 3 ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(),
               shrinkWrap: true,
               cacheExtent: 500,
               itemCount: currentCategories.length,

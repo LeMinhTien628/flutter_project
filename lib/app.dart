@@ -1,5 +1,4 @@
 import 'package:app_food_delivery/screens/auth/account_screen.dart';
-import 'package:app_food_delivery/screens/detail/detail_product.dart';
 import 'package:app_food_delivery/screens/home/home_screen.dart';
 import 'package:app_food_delivery/screens/menu/menu_screen.dart';
 import 'package:app_food_delivery/screens/order/order_screen.dart';
@@ -18,8 +17,8 @@ class _MainAppState extends State<MainApp> {
     Center(child: HomeScreen()),
     Center(child: PromotionScreen()),
     Center(child: MenuScreen()),
-    Center(child: DetailProduct()),
-    //Center(child: OrderScreen()),
+    // Center(child: DetailProduct()),
+    Center(child: OrderScreen()),
     Center(child: AccountScreen()),
   ];
 

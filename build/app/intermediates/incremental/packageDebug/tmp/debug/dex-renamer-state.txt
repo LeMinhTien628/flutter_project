@@ -1,4 +1,4 @@
-#Sat Mar 22 20:34:03 ICT 2025
+#Mon Mar 31 08:04:50 ICT 2025
 base.0=D\:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=D\:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=D\:\\HK2_Nam3\\KhaiPhaDuLieu\\KHAIPHADULIEU_NHOM13\\DOAN\\app_order_food\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex

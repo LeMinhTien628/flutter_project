@@ -1,7 +1,7 @@
 import 'package:app_food_delivery/constants/app_colors.dart';
 import 'package:app_food_delivery/constants/app_strings.dart';
+import 'package:app_food_delivery/utils/format_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 
 class BestSeller extends StatelessWidget {
@@ -17,9 +17,7 @@ class BestSeller extends StatelessWidget {
     325000, 205000, 175000, 235000,
   ];
 
-  String formattedPrice(int gia){
-    return NumberFormat("#,###").format(gia);
-  }
+  
   //Chuyển đổi tiền
   @override
   Widget build(BuildContext context) {
@@ -70,7 +68,7 @@ class BestSeller extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 4, bottom: 6),
                   child: Text(
-                    formattedPrice(price[index]) + AppStrings.tienTe,
+                    FormatUtils.formattedPrice(price[index]) + AppStrings.tienTe,
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,

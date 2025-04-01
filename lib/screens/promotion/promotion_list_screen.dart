@@ -28,7 +28,7 @@ class _PromotionListScreenState extends State<PromotionListScreen> {
           //Khuyến mãi chính
           Container(
             padding: EdgeInsets.all(4),
-            margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+            margin: EdgeInsets.fromLTRB(16, 8, 16, 16),
             decoration: BoxDecoration(
               color: AppColors.background,
               borderRadius: BorderRadius.circular(6),
@@ -55,7 +55,7 @@ class _PromotionListScreenState extends State<PromotionListScreen> {
                 ),
                 //Tên khuyến mãi chính
                 Container(
-                  margin: EdgeInsets.only(top: 10, bottom: 20),
+                  margin: EdgeInsets.only(top: 10, bottom: 16),
                   padding: EdgeInsets.only(right: 8, left: 8),
                   child: Text(
                     "Buy 2 GET 3".toUpperCase(),
@@ -72,7 +72,7 @@ class _PromotionListScreenState extends State<PromotionListScreen> {
 
           //Danh sách khuyến mãi
           Container(
-            margin: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+            margin: EdgeInsets.only(left: 16, right: 16),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

@@ -13,10 +13,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+  bool isLogin = false;
   int selectedButton = 1; // không có nút nào được chọn
   //Trạng thái Delivery - Carryout
-  void onToggleButton(int buttonIndex){
+  void onToggleButton(int buttonIndex) {
     setState(() {
       selectedButton = buttonIndex;
     });
@@ -32,9 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //controller: ,
       child: Container(
         // height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Colors.white
-        ),
+        decoration: BoxDecoration(color: Colors.white),
         margin: EdgeInsets.zero,
         padding: EdgeInsets.zero,
         child: Column(
@@ -43,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Banner slide
             BannerSlider(),
 
+            //Xinh chào
             Container(
               margin: EdgeInsets.fromLTRB(0, 16, 0, 16),
               alignment: Alignment.center,
@@ -51,19 +50,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.textSecondary
+                  color: AppColors.textSecondary,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-
+            
+            //Order now
             Container(
               height: 131,
               width: double.infinity,
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               decoration: BoxDecoration(
-                color: Colors.white
-              ),
+                color: Colors.white,),
               child: Stack(
                 children: [
                   Positioned(
@@ -75,10 +74,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(
-                          width: 1,
-                          color: AppColors.border
-                        )
+                        border: Border.all(width: 1, color: AppColors.border),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2), // Màu bóng
+                            spreadRadius: -4, // Độ lan của bóng
+                            blurRadius: 4, // Độ mờ của bóng
+                            offset: Offset(0, 4), // Độ dịch chuyển (chỉ xuống dưới)
+                          ),
+                        ],
                       ),
                       child: Column(
                         children: [
@@ -94,9 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          
+
                           GestureDetector(
-                            onTap: (){print("tets");},
+                            onTap: () {
+                              print("tets");
+                            },
                             child: Container(
                               margin: EdgeInsets.only(top: 6),
                               alignment: Alignment.center,
@@ -136,19 +142,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primary,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6)
-                                )
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
                               ),
-                              onPressed: (){}, 
+                              onPressed: () {},
                               child: Text(
                                 "ORDER NOW".toUpperCase(),
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              )
+                              ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -167,49 +173,63 @@ class _HomeScreenState extends State<HomeScreen> {
                             offset: Offset(1, 1),
                             blurRadius: 1,
                             spreadRadius: 1,
-                          )
-                        ]
+                          ),
+                        ],
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: ()=>onToggleButton(1),
+                            onTap: () => onToggleButton(1),
                             child: AnimatedContainer(
                               width: 101,
                               duration: Duration(milliseconds: 300),
-                              curve: Curves.bounceInOut, // vào chậm – bật ra nhanh – rồi nảy nhẹ
+                              curve:
+                                  Curves
+                                      .bounceInOut, // vào chậm – bật ra nhanh – rồi nảy nhẹ
                               padding: EdgeInsets.fromLTRB(24, 6, 24, 6),
                               decoration: BoxDecoration(
-                                color: selectedButton == 1 ? AppColors.buttonPrimary : AppColors.backgroudGreyBland,
+                                color:
+                                    selectedButton == 1
+                                        ? AppColors.buttonPrimary
+                                        : AppColors.backgroudGreyBland,
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
                                 "Delivery",
                                 style: TextStyle(
-                                  color: selectedButton == 1 ?Colors.white : AppColors.textSecondary,
-                                  fontSize: 12
+                                  color:
+                                      selectedButton == 1
+                                          ? Colors.white
+                                          : AppColors.textSecondary,
+                                  fontSize: 12,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
                             ),
                           ),
                           GestureDetector(
-                            onTap:()=>onToggleButton(0),
+                            onTap: () => onToggleButton(0),
                             child: AnimatedContainer(
                               width: 101,
                               duration: Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                               padding: EdgeInsets.fromLTRB(24, 6, 24, 6),
                               decoration: BoxDecoration(
-                                color: selectedButton == 0 ? AppColors.buttonPrimary : AppColors.backgroudGreyBland,
+                                color:
+                                    selectedButton == 0
+                                        ? AppColors.buttonPrimary
+                                        : AppColors.backgroudGreyBland,
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
                                 "Carry Out",
                                 style: TextStyle(
-                                  color: selectedButton == 0 ?Colors.white : AppColors.textSecondary,
+                                  color:
+                                      selectedButton == 0
+                                          ? Colors.white
+                                          : AppColors.textSecondary,
                                   fontSize: 12,
                                 ),
                                 textAlign: TextAlign.center,
@@ -218,52 +238,58 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ),
-                
                 ],
               ),
             ),
 
+            //Button phụ
             Container(
               width: double.infinity,
               height: 38,
               margin: EdgeInsets.fromLTRB(10, 0, 10, 16),
+              decoration: BoxDecoration(
+                 boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2), // Màu bóng
+                    spreadRadius: -4, // Độ lan của bóng
+                    blurRadius: 4, // Độ mờ của bóng
+                    offset: Offset(0, 4), // Độ dịch chuyển (chỉ xuống dưới)
+                  ),
+                ],
+              ),
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: AppColors.primary,
-                  side: BorderSide(
-                    color: AppColors.border,
-                    width: 1
-                  ),
+                  side: BorderSide(color: AppColors.border, width: 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
-                  )
+                  ),
                 ),
-                onPressed: (){}, 
+                onPressed: () {},
                 child: Text(
-                  "BUY 1 GET 1 FREE THURSDAY".toUpperCase(),
+                  isLogin
+                      ? "BUY 1 GET 1 FREE THURSDAY".toUpperCase()
+                      : "Đặt Lại Đơn Gần Nhất",
                   style: TextStyle(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,
-                    fontSize: 10
+                    fontSize: 10,
                   ),
-                )
+                ),
               ),
             ),
 
             Container(
               width: double.infinity,
-              height: 240,
-              padding: EdgeInsets.only(bottom: 20),
-              decoration: BoxDecoration(
-                color: AppColors.backgroudGreyBland
-              ),
+              padding: EdgeInsets.only(bottom: 12),
+              decoration: BoxDecoration(color: AppColors.backgroudGreyBland),
               child: Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.fromLTRB(10, 6, 10, 10),
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -276,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: TextStyle(
                                     color: AppColors.secondary,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 12
+                                    fontSize: 12,
                                   ),
                                 ),
                               ),
@@ -285,9 +311,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 3,
                                 decoration: BoxDecoration(
                                   color: AppColors.secondary,
-                                  borderRadius: BorderRadius.circular(0)
+                                  borderRadius: BorderRadius.circular(0),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -301,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: TextStyle(
                                     color: AppColors.primary,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 12
+                                    fontSize: 12,
                                   ),
                                 ),
                               ),
@@ -310,31 +336,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: FaIcon(
                                   FontAwesomeIcons.angleRight,
                                   size: 18,
-                                  color: AppColors.textPrimary
+                                  color: AppColors.textPrimary,
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.all(0),
-                    child: BestSeller(),
-                  ),
+                  Container(margin: EdgeInsets.all(0), child: BestSeller()),
                 ],
               ),
             ),
-
-            
-
-
-
           ],
         ),
       ),
     );
   }
 }
-

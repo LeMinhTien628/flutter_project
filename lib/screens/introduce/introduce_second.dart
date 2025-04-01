@@ -1,3 +1,4 @@
+import 'package:app_food_delivery/app.dart';
 import 'package:app_food_delivery/constants/app_colors.dart';
 import 'package:app_food_delivery/main.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _IntroduceSecondtState extends State<IntroduceSecond> {
     Future.delayed(Duration(seconds: 3), (){
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CustomBottomNavScreen()) 
+        MaterialPageRoute(builder: (context) => MainApp()) 
       );
     });
   }

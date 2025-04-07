@@ -1,7 +1,10 @@
-import 'package:app_food_delivery/constants/app_colors.dart';
-import 'package:app_food_delivery/constants/app_strings.dart';
+import 'package:app_food_delivery/core/constants/app_colors.dart';
+import 'package:app_food_delivery/core/constants/app_strings.dart';
+import 'package:app_food_delivery/core/utils/format_utils.dart';
+import 'package:app_food_delivery/screens/feedback/feedback_screen.dart';
 import 'package:app_food_delivery/screens/home/banner_slider.dart';
 import 'package:app_food_delivery/screens/home/best_seller.dart';
+import 'package:app_food_delivery/screens/product/product_detail_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -266,11 +269,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                        context,
+                    MaterialPageRoute(builder: (context) => FeedbackScreen()),
+                  );
+                },
                 child: Text(
                   isLogin
                       ? "BUY 1 GET 1 FREE THURSDAY".toUpperCase()
-                      : "Đặt Lại Đơn Gần Nhất",
+                      // : "Đặt Lại Đơn Gần Nhất",
+                      : "Feedback test",
                   style: TextStyle(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,
@@ -280,6 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
+            //Best seller
             Container(
               width: double.infinity,
               padding: EdgeInsets.only(bottom: 12),
@@ -343,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  Container(margin: EdgeInsets.all(0), child: BestSeller()),
+                  Container(margin: EdgeInsets.all(0), child: buildBestSeller()),
                 ],
               ),
             ),
@@ -352,4 +362,92 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget buildBestSeller() {
+    //Danh sách best seller
+    List<String> name = [
+      "Seafood Four Seasons",
+      "American Cheeseburger",
+      "Cheesy Madness",
+      "Super Topping Surf And Turf"
+    ];
+    List<int> price = [
+      325000, 205000, 175000, 235000,
+    ];
+    return  Container(
+      height: 184,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        physics: BouncingScrollPhysics(),
+        itemCount: name.length,
+        itemBuilder: (context, index){
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => ProductDetailScreen()),
+              );
+            },
+            onDoubleTap: (){
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => ProductDetailScreen()),
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(6)
+              ),
+              width: 120,
+              margin: EdgeInsets.only(left: 16),
+              child: Column(
+                children: [
+                  Container(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(6),
+                        topRight: Radius.circular(6)
+                      ),
+                      child: Image.asset(
+                        "assets/images/pizza.png",
+                        height: 110,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 16),
+                    child: Text(
+                      name[index],
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary
+                      ),
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    margin: EdgeInsets.only(top: 4, bottom: 6),
+                    child: Text(
+                      FormatUtils.formattedPrice(price[index]) + AppStrings.tienTe,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textSecondary
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
 }

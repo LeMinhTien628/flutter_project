@@ -1,4 +1,4 @@
-  import 'package:app_food_delivery/constants/app_colors.dart';
+  import 'package:app_food_delivery/core/constants/app_colors.dart';
 import 'package:app_food_delivery/screens/menu/categories_sub.dart';
 import 'package:flutter/material.dart';
 

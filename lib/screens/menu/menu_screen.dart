@@ -1,4 +1,4 @@
-  import 'package:app_food_delivery/constants/app_colors.dart';
+  import 'package:app_food_delivery/core/constants/app_colors.dart';
   import 'package:app_food_delivery/screens/cart/cart_sub.dart';
 import 'package:app_food_delivery/screens/menu/categories_list_product.dart';
 import 'package:app_food_delivery/screens/menu/categories_main.dart';

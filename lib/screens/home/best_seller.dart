@@ -1,7 +1,7 @@
-import 'package:app_food_delivery/constants/app_colors.dart';
-import 'package:app_food_delivery/constants/app_strings.dart';
-import 'package:app_food_delivery/screens/detail/detail_product.dart';
-import 'package:app_food_delivery/utils/format_utils.dart';
+import 'package:app_food_delivery/core/constants/app_colors.dart';
+import 'package:app_food_delivery/core/constants/app_strings.dart';
+import 'package:app_food_delivery/screens/product/product_detail_screen.dart';
+import 'package:app_food_delivery/core/utils/format_utils.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,7 +18,6 @@ class BestSeller extends StatelessWidget {
     325000, 205000, 175000, 235000,
   ];
 
-  
   //Chuyển đổi tiền
   @override
   Widget build(BuildContext context) {
@@ -33,13 +32,13 @@ class BestSeller extends StatelessWidget {
             onTap: (){
               Navigator.push(
                 context, 
-                MaterialPageRoute(builder: (context) => DetailProduct()),
+                MaterialPageRoute(builder: (context) => ProductDetailScreen()),
               );
             },
             onDoubleTap: (){
               Navigator.push(
                 context, 
-                MaterialPageRoute(builder: (context) => DetailProduct()),
+                MaterialPageRoute(builder: (context) => ProductDetailScreen()),
               );
             },
             child: Container(
@@ -97,4 +96,5 @@ class BestSeller extends StatelessWidget {
       ),
     );
   }
+
 }

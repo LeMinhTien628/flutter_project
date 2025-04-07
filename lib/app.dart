@@ -1,8 +1,12 @@
-import 'package:app_food_delivery/screens/auth/account_screen.dart';
+import 'package:app_food_delivery/screens/feedback/feedback_screen.dart';
+import 'package:app_food_delivery/screens/feedback/feedback_thankyou_screen.dart';
 import 'package:app_food_delivery/screens/home/home_screen.dart';
 import 'package:app_food_delivery/screens/menu/menu_screen.dart';
 import 'package:app_food_delivery/screens/order/order_screen.dart';
+import 'package:app_food_delivery/screens/product/product_detail_screen.dart';
+import 'package:app_food_delivery/screens/profile/profile_screen.dart';
 import 'package:app_food_delivery/screens/promotion/promotion_screen.dart';
+import 'package:app_food_delivery/screens/ranking/ranking_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainApp extends StatefulWidget {
@@ -11,15 +15,17 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 0;
 
   final List<Widget> _screens = [
     Center(child: HomeScreen()),
     Center(child: PromotionScreen()),
     Center(child: MenuScreen()),
-    // Center(child: DetailProduct()),
     Center(child: OrderScreen()),
-    Center(child: AccountScreen()),
+    // Center(child: FeedbackScreen()),
+    // Center(child: FeedbackThankyouScreen()),
+    Center(child: RankingScreen()),
+    Center(child: ProfileScreen()),
   ];
 
   void _onItemTapped(int index) {
@@ -31,7 +37,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double itemWidth = screenWidth / 5;
+    double itemWidth = screenWidth / 6;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -60,7 +66,7 @@ class _MainAppState extends State<MainApp> {
                 // Animated Indicator
                 AnimatedPositioned(
                   duration: Duration(milliseconds: 300),
-                  left: _selectedIndex * itemWidth + (itemWidth / 2) - 18,
+                  left: _selectedIndex * itemWidth + (itemWidth / 2) - 17,
                   top: -2,
                   child: Container(
                     width: 34,
@@ -73,14 +79,14 @@ class _MainAppState extends State<MainApp> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(5, (index) {
+                  children: List.generate(6, (index) {
                     return GestureDetector(
                       onTap: () => _onItemTapped(index),
                       child: AnimatedContainer(
                         duration: Duration(milliseconds: 300),
                         padding: EdgeInsets.fromLTRB(8, 12, 8, 12),
                         child: Container(
-                          margin: EdgeInsets.only(top: 0),
+                          padding: EdgeInsets.only(top: 0),
                           child: ImageIcon(
                             AssetImage(_getIcon(index)),
                             color: _selectedIndex == index ? Colors.orange : Colors.grey,
@@ -112,6 +118,8 @@ class _MainAppState extends State<MainApp> {
       case 3:
         return "assets/icons/delivery.png";
       case 4:
+        return "assets/icons/ranking.png";
+      case 5:
         return "assets/icons/account.png";
       default:
         return "assets/icons/domino.png";

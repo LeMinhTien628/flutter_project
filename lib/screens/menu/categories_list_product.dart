@@ -1,7 +1,7 @@
-import 'package:app_food_delivery/constants/app_colors.dart';
-import 'package:app_food_delivery/constants/app_strings.dart';
-import 'package:app_food_delivery/screens/detail/detail_product.dart';
-import 'package:app_food_delivery/utils/format_utils.dart';
+import 'package:app_food_delivery/core/constants/app_colors.dart';
+import 'package:app_food_delivery/core/constants/app_strings.dart';
+import 'package:app_food_delivery/screens/product/product_detail_screen.dart';
+import 'package:app_food_delivery/core/utils/format_utils.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesListProduct extends StatefulWidget {
@@ -52,7 +52,7 @@ class _CategoriesListProductState extends State<CategoriesListProduct> {
       onTap:() {
         Navigator.push(
           context, 
-          MaterialPageRoute(builder: (context) => DetailProduct()),
+          MaterialPageRoute(builder: (context) => ProductDetailScreen()),
         );
       },
       child: Container(

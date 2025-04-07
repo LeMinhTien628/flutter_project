@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:app_food_delivery/constants/app_colors.dart';
+import 'package:app_food_delivery/core/constants/app_colors.dart';
 
 class PromotionListScreen extends StatefulWidget {
   const PromotionListScreen({super.key});

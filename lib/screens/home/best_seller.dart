@@ -5,6 +5,7 @@ import 'package:app_food_delivery/core/utils/format_utils.dart';
 import 'package:flutter/material.dart';
 
 
+// ignore: must_be_immutable
 class BestSeller extends StatelessWidget {
   BestSeller({super.key});
   //Danh sách best seller

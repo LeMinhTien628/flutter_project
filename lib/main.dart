@@ -1,4 +1,5 @@
-import 'package:app_food_delivery/app.dart';
+import 'package:app_food_delivery/screens/auth/auth_screen.dart';
+import 'package:app_food_delivery/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       //   fontFamily: 'BeVietnam',
       // ),
       color: Colors.white,
-      home: MainApp(),
+      //home: MainApp(),
+      home: LoginScreen()
     );
   }
 }

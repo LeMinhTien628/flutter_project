@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\windows\flutter\ephemeral\cpp_client_wrapper\plugin_registrar.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\app_order_food\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2552CF8A-2D47-3DE1-8B2D-66CF503ED303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{2ADD4B33-0906-30B3-8703-318387382E9F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

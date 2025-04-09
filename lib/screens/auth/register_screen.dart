@@ -172,12 +172,12 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                             color: AppColors.textSecondary,
                             fontSize: 14
                           ),
-                          prefixIcon: const Icon(Icons.email, color: AppColors.textSecondary, size: 22,),
+                          prefixIcon: const Icon(Icons.email, color: AppColors.textSecondary, size: 20,),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: EdgeInsets.fromLTRB(10, 16, 10, 16)
+                          contentPadding: EdgeInsets.fromLTRB(10, 14, 10, 14)
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -200,12 +200,12 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                             color: AppColors.textSecondary,
                             fontSize: 14
                           ),
-                          prefixIcon: const Icon(Icons.lock, color: AppColors.textSecondary, size: 22,),
+                          prefixIcon: const Icon(Icons.lock, color: AppColors.textSecondary, size: 20,),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
                               color: Colors.black54,
-                              size: 22,
+                              size: 20,
                             ),
                             onPressed: () {
                               setState(() {
@@ -217,7 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: EdgeInsets.fromLTRB(10, 16, 10, 16)
+                          contentPadding: EdgeInsets.fromLTRB(10, 14, 10, 14)
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -240,12 +240,12 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                             color: AppColors.textSecondary,
                             fontSize: 14
                           ),
-                          prefixIcon: const Icon(Icons.lock, color: AppColors.textSecondary, size: 22,),
+                          prefixIcon: const Icon(Icons.lock, color: AppColors.textSecondary, size: 20,),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isConfirmPasswordHidden ? Icons.visibility_off : Icons.visibility,
                               color: Colors.black54,
-                              size: 22,
+                              size: 20,
                             ),
                             onPressed: () {
                               setState(() {
@@ -257,7 +257,7 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: EdgeInsets.fromLTRB(10, 16, 10, 16)
+                          contentPadding: EdgeInsets.fromLTRB(10, 14, 10, 14)
                         ),
                       ),
                       SizedBox(height: 10),

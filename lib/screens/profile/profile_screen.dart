@@ -1,5 +1,6 @@
 import 'package:app_food_delivery/core/constants/app_colors.dart';
 import 'package:app_food_delivery/core/constants/app_strings.dart';
+import 'package:app_food_delivery/screens/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -826,7 +827,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
 
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context, 
+                                MaterialPageRoute(builder: (context)=>AuthScreen())
+                              );
+                            },
                             child: Container(
                               padding: EdgeInsets.all(10),
                               margin: EdgeInsets.only(bottom: 8),

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       // ),
       color: Colors.white,
       //home: MainApp(),
-      home: LoginScreen()
+      home: AuthScreen()
     );
   }
 }

@@ -132,7 +132,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                 const SizedBox(height: 6),
                 // Nút Register
                 FadeTransition(
-                  opacity: _fadeAnimation,
+                  opacity: _fadeAnimation, 
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -144,7 +144,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                       backgroundColor: Colors.white,
                       foregroundColor: AppColors.primary,
                       padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-                      elevation: 5,
+                      elevation: 6,
                       shadowColor: Colors.black38,
                     ),
                     child: Text(
@@ -201,7 +201,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                       _buildSocialButton(
                         iconPath: 'assets/icons/apple.png',
                         onTap: () {
-                          // Xử lý đăng nhập bằng Facebook
+                          // Xử lý đăng nhập bằng apple
                         },
                       ),
                     ],

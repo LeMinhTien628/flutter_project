@@ -1,5 +1,6 @@
 import 'package:app_food_delivery/core/constants/app_colors.dart';
 import 'package:app_food_delivery/core/constants/app_strings.dart';
+import 'package:app_food_delivery/screens/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 
 class CartSub extends StatefulWidget {
@@ -16,11 +17,14 @@ class _CartSubState extends State<CartSub> {
   Widget build(BuildContext context) {
     //Giỏ hàng 
     return Positioned(
-      bottom: 10,
-      right: 30,
+      bottom: 20,
+      right: 40,
       child: GestureDetector(
         onTap: () {
-          print("test");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context)=>CartScreen())
+          );
         },
         child: Stack(
           clipBehavior: Clip.none,

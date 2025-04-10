@@ -10,11 +10,14 @@ import 'package:app_food_delivery/screens/ranking/ranking_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainApp extends StatefulWidget {
+  int selectedScreen = 0;
+  //MainApp({required selectedScreen});
   @override
   _MainAppState createState() => _MainAppState();
 }
 
 class _MainAppState extends State<MainApp> {
+  //MainApp a = MainApp(selectedScreen: 1);
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [

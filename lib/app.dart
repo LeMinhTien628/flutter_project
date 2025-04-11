@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 
 class MainApp extends StatefulWidget {
   int selectedScreen = 0;
+
+  MainApp({super.key});
   //MainApp({required selectedScreen});
   @override
   _MainAppState createState() => _MainAppState();

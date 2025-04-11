@@ -1,1 +1,0 @@
- D:\\HK2_Nam3\\Flutter\\ui\\app_food_delivery\\.dart_tool\\flutter_build\\48c42e79474376090836bf2d19ae0119\\native_assets.json: 

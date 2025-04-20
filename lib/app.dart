@@ -20,7 +20,6 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  //MainApp a = MainApp(selectedScreen: 1);
   late int _selectedIndex = 0;
 
   final List<Widget> _screens = [

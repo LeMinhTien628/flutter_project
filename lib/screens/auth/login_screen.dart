@@ -1,5 +1,5 @@
 import 'package:app_food_delivery/app.dart';
-import 'package:app_food_delivery/api/api_service.dart';
+import 'package:app_food_delivery/api/auth_service.dart';
 import 'package:app_food_delivery/screens/auth/register_screen.dart';
 import 'package:app_food_delivery/widgets/custom_checkbox.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final ApiService _apiService = ApiService(); // Khởi tạo ApiService
+  final AuthService _AuthService = AuthService(); // Khởi tạo AuthService
   bool _isPasswordHidden = true;
   bool _isAgree = false;
   bool _isLoading = false; // Trạng thái loading
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     });
 
     try {
-      final response = await _apiService.login(email,password);
+      final response = await _AuthService.login(email,password);
       await _saveToken(response.token); // Lưu token
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Đăng nhập thành công')),

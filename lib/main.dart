@@ -3,6 +3,7 @@ import 'package:app_food_delivery/screens/auth/auth_screen.dart';
 import 'package:app_food_delivery/screens/auth/login_screen.dart';
 import 'package:app_food_delivery/screens/feedback/feedback_screen.dart';
 import 'package:app_food_delivery/screens/order/order_screen.dart';
+import 'package:app_food_delivery/screens/menu/menu_screen.dart';
 import 'package:app_food_delivery/screens/ranking/ranking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       color: Colors.white,
       //initialRoute: MainApp.routeName, // Màn hình khởi đầu
-      initialRoute: FeedbackScreen.routeName, //Test màn
+      initialRoute: AuthScreen.routeName, //Test màn
       onGenerateRoute: (settings) {
         // Xử lý route động cho MainApp
         if (settings.name == MainApp.routeName) {
@@ -36,12 +37,11 @@ class MyApp extends StatelessWidget {
         return null;
       },
       routes: {
-        MainApp.routeName: (context) => MainApp(),
-        // MainApp.routeName: (context) => MainApp(selectedScreen: 1),
+        MainApp.routeName: (context) => MainApp(initialIndex: 0),
         // HomeScreen.routeName: (context) => const HomeScreen(),
         // PromotionScreen.routeName: (context) => const PromotionScreen(),
-        // MenuScreen.routeName: (context) => const MenuScreen(),
         // ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
+        //MenuScreen.routeName: (context) => const MenuScreen(),
         AuthScreen.routeName: (context) => const AuthScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         OrderScreen.routeName: (context) => const OrderScreen(),

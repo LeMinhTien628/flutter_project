@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:app_food_delivery/models/auth_model.dart';
 
-class ApiService {
+class AuthService {
   static const String baseUrl =
       'http://192.168.189.1:5021'; //Không phải cổng local host nữa mà là địa chỉ ipv4
   // dotnet run --urls "http://0.0.0.0:5021" 

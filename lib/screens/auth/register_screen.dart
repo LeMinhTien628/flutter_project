@@ -3,7 +3,7 @@ import 'package:app_food_delivery/screens/auth/login_screen.dart';
 import 'package:app_food_delivery/widgets/custom_checkbox.dart';
 import 'package:flutter/material.dart';
 import 'package:app_food_delivery/core/constants/app_colors.dart';
-import 'package:app_food_delivery/api/api_service.dart';
+import 'package:app_food_delivery/api/auth_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const routeName = '/register';
@@ -20,7 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
-  final ApiService _apiService = ApiService();
+  final AuthService _AuthService = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool _isPasswordHidden = true;
   bool _isConfirmPasswordHidden = true;
@@ -59,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
     String password = _passwordController.text.trim();
 
     try {
-      final response = await _apiService.register(
+      final response = await _AuthService.register(
         username,
         phone,
         email,

@@ -8,8 +8,9 @@ import 'package:app_food_delivery/screens/ranking/ranking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-// user1@gmail.com hash1
-// dotnet run --urls "http://0.0.0.0:5021"
+// nguyenvanhung1990@gmail.com
+// hash1
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   debugPaintSizeEnabled = false;

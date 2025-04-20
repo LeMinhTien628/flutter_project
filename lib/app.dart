@@ -23,12 +23,12 @@ class _MainAppState extends State<MainApp> {
   late int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    Center(child: HomeScreen()),
-    Center(child: PromotionScreen()),
-    Center(child: MenuScreen()),
-    Center(child: OrderScreen()),
-    Center(child: RankingScreen()),
-    Center(child: ProfileScreen()),
+   HomeScreen(),
+   PromotionScreen(),
+   MenuScreen(),
+   OrderScreen(),
+   RankingScreen(),
+   ProfileScreen(),
   ];
 
   @override
@@ -48,7 +48,6 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double itemWidth = screenWidth / 6;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: _screens[_selectedIndex],

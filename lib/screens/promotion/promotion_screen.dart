@@ -13,6 +13,8 @@
 
   class _PromotionScreenState extends State<PromotionScreen> {
 
+    //Promotion - E-voucher
+    // 0 - E-voucher, 1 - Promotion
     int selectedButton = 1; //  chọn ô promotion mặc định
 
     int qualityCart = 10;
@@ -130,11 +132,9 @@
                   ],
                 )
               )
-      
             ],
           ),
         )
-        
         
       );
     }

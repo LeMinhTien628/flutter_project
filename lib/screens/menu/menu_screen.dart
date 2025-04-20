@@ -14,12 +14,13 @@ import 'package:app_food_delivery/screens/menu/categories_main.dart';
   }
 
   class _MenuScreenState extends State<MenuScreen> {
-
-    int selectedButton = 1; //  chọn ô promotion mặc định
-
+    // Khai báo biến để lưu trạng thái của các nút bấm
+    // 0: Carry Out, 1: Delivery
+    int selectedButton = 1; 
+    
+    //Lấy số lượng trong giỏ hàng
     int qualityCart = 10;
     
-    //Trạng thái Promotion - E-voucher
     void onToggleButton(int buttonIndex){
       setState(() {
         selectedButton = buttonIndex;

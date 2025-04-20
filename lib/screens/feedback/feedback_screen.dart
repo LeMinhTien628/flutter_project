@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:app_food_delivery/core/constants/app_colors.dart';
 
 class FeedbackScreen extends StatefulWidget {
+  static const routeName = '/feedback';
   const FeedbackScreen({super.key});
 
   @override
@@ -16,11 +17,13 @@ class FeedbackScreen extends StatefulWidget {
 class _FeedbackScreenState extends State<FeedbackScreen> {
   // Map lưu số sao cho từng tiêu chí
   Map<String, int> ratings = {
-    'Mùi vị': 0,
-    'Đóng gói': 0,
-    'Đầy đủ dụng cụ': 0,
-    'Đẹp mắt': 0,
-    'Thái độ nhân viên': 0,
+    '1. Đế bánh (Crust)': 0,
+    '2. Nước sốt (Sauce)': 0,
+    '3. Phô mai (Cheese)': 0,
+    '4. Topping (Nguyên liệu phủ bên trên)': 0,
+    '5. Hương vị tổng thể': 0,
+    '6. Trình bày (Presentation)': 0,
+    '7. Dịch vụ và trải nghiệm': 0,
   };
   final TextEditingController _commentController = TextEditingController();
 
@@ -80,8 +83,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     child: Container(
                       padding: const EdgeInsets.all(0),
                       child: Icon(
-                        Icons.arrow_back,
-                        size: 24,
+                        Icons.close,
+                        size: 22,
                       )
                     ),
                   ),
@@ -217,6 +220,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: AppColors.border,
+                          width: 1,
+                        ),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.1),
@@ -229,8 +236,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         controller: _commentController,
                         maxLines: 4,
                         decoration: InputDecoration(
-                          hintText: 'Nhập cảm nhận của bạn về món hàng...',
-                          hintStyle: TextStyle(color: Colors.grey[500], fontSize: 14),
+                          hintText: 'Cho chúng tôi biết về trải nghiệm của bạn',
+                          hintStyle: TextStyle(color: AppColors.textSecondary, fontSize: 14),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
                             borderSide: BorderSide.none,
@@ -243,12 +250,62 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
+                    //Nút thêm ảnh và video
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            // Logic thêm ảnh
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.photo, color: AppColors.primary, size: 20),
+                                const SizedBox(width: 8),
+                                const Text(
+                                  'Thêm ảnh',
+                                  style: TextStyle(color: AppColors.primary, fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Logic thêm video
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.video_call, color: AppColors.primary, size: 20),
+                                const SizedBox(width: 8),
+                                const Text(
+                                  'Thêm video',
+                                  style: TextStyle(color: AppColors.primary, fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
 
+                    const SizedBox(height: 20),
                     // Nút gửi đánh giá
-                    Container(
-                      margin: EdgeInsets.only(bottom: 12),
+                    SizedBox(
+                      height: 50,
                       width: double.infinity,
-                      height: 40,
                       child: ElevatedButton.icon(
                         onPressed: _submitReview,
                         icon: const Icon(Icons.send, size: 20, color: Colors.white,),
@@ -266,6 +323,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -283,6 +341,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   }
   Widget buildOrderDetailsCard() {
     // Dữ liệu mẫu danh sách món (có thể thay bằng dữ liệu thực tế)
+    //Lấy chi tiết đơn hàng từ API
+
     final List<Map<String, dynamic>> orderItems = [
       {
         'image': 'assets/images/pizza.png',

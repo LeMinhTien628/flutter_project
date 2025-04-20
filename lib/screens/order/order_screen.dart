@@ -1,8 +1,10 @@
+import 'package:app_food_delivery/app.dart';
 import 'package:app_food_delivery/core/constants/app_colors.dart';
-import 'package:app_food_delivery/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class OrderScreen extends StatefulWidget {
+  static const routeName = '/order'; // Định nghĩa routeName
+
   const OrderScreen({super.key});
 
   @override
@@ -10,22 +12,26 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  int quanlityCart = 0;
-  bool isButtonLanguage = false;
+  int quantityCart = 0; 
+
+  //Lấy danh sách đơn dàng đã từng đặt qua API
+  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // Nội dung chính
         Positioned.fill(
           top: 46,
           child: Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             decoration: BoxDecoration(color: AppColors.backgroudGreyBland),
             child: Column(
               children: [
                 Expanded(
                   child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     clipBehavior: Clip.none,
                     child: Container(
@@ -37,55 +43,54 @@ class _OrderScreenState extends State<OrderScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          // Thông tin số điện thoại
                           Container(
-                            padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-                            decoration: BoxDecoration(color: Colors.white),
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            decoration: const BoxDecoration(color: Colors.white),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        child: Text(
-                                          "Đơn Hàng Của Số Điện Thoại",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            color: AppColors.textSecondary,
-                                          ),
-                                        ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Đơn Hàng Của Số Điện Thoại",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: AppColors.textSecondary,
                                       ),
-                                      Container(
-                                        child: Text(
-                                          "0345088996",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: AppColors.textPrimary,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      "0345088996",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: AppColors.textPrimary,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    // Logic để thay đổi số điện thoại (có thể điều hướng đến màn hình nhập số mới)
+                                    print("Thay đổi số điện thoại");
+                                  },
                                   child: Text(
                                     "Thay Đổi",
                                     style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: 12,
                                       color: AppColors.primary,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          
-                          quanlityCart == 0 ? buidNoCart() : Container(),
+                          const SizedBox(height: 16),
+                          // Hiển thị thông báo không có đơn hàng
+                          quantityCart == 0 ? buildNoCart() : Container(),
                         ],
                       ),
                     ),
@@ -114,23 +119,36 @@ class _OrderScreenState extends State<OrderScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    print("Quay lại trang trước");
+                    // Quay lại màn hình trước đó
+                    Navigator.pop(context);
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 24, left: 8),
-                    child: Icon(Icons.chevron_left),
+                    margin: const EdgeInsets.only(top: 24, left: 16),
+                    child: const Icon(
+                      Icons.chevron_left,
+                      size: 28,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 24),
-                  child: Text(
+                  margin: const EdgeInsets.only(top: 24),
+                  child: const Text(
                     "Theo Dõi Đơn Hàng",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                Opacity(
+                // Placeholder để cân đối layout
+                const Opacity(
                   opacity: 0.0,
-                  child: Container(child: Icon(Icons.chevron_left)),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 24, right: 16),
+                    child: Icon(Icons.chevron_left, size: 28),
+                  ),
                 ),
               ],
             ),
@@ -142,59 +160,63 @@ class _OrderScreenState extends State<OrderScreen> {
 
   Widget buildSeparate() {
     return Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       height: 2,
       decoration: BoxDecoration(color: AppColors.backgroudGreyBland),
     );
   }
 
-  Widget buidNoCart() {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            child: Image.asset(
-              "assets/images/no_cart.png",
-              width: 200,
-              height: 200,
-              fit: BoxFit.fill,
-            ),
+  Widget buildNoCart() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          "assets/images/no_cart.png",
+          width: 200,
+          height: 200,
+          fit: BoxFit.contain,
+        ),
+        const SizedBox(height: 16),
+        Text(
+          "Bạn Hiện Chưa Có Đơn Hàng Nào!",
+          style: TextStyle(
+            fontSize: 14,
+            color: AppColors.textSecondary,
+            fontWeight: FontWeight.bold,
           ),
-          Container(
-            child: Text(
-              "Bạn Hiện Chưa Có Đơn Hàng Nào!",
+        ),
+        const SizedBox(height: 20),
+        SizedBox(
+          height: 40,
+          child: TextButton(
+            onPressed: () {
+              // Điều hướng đến MainApp, tab Menu (chỉ số 2)
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                MainApp.routeName,
+                (Route<dynamic> route) => false,
+                arguments: 2, // Tab Menu
+              );
+            },
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: AppColors.buttonPrimary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+            ),
+            child: const Text(
+              "Đặt Hàng Ngay",
               style: TextStyle(
-                fontSize: 12,
-                color: AppColors.textSecondary,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
           ),
-
-          Container(
-            height: 32,
-            margin: EdgeInsets.only(top: 20),
-            child: TextButton(
-              onPressed: () {
-                print("Di chuyển đến menu");
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: AppColors.buttonPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-              ),
-              child: Text(
-                "Đặt Hàng Ngay",
-                style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

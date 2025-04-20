@@ -1,3 +1,4 @@
+import 'package:app_food_delivery/app.dart';
 import 'package:app_food_delivery/core/constants/app_colors.dart';
 import 'package:app_food_delivery/core/constants/app_strings.dart';
 import 'package:app_food_delivery/core/utils/format_utils.dart';
@@ -148,7 +149,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  MainApp.routeName,
+                                  (Route<dynamic> route) => false,
+                                  arguments: 2, // Tab Menu
+                                );
+                              },
                               child: Text(
                                 "ORDER NOW".toUpperCase(),
                                 style: TextStyle(
@@ -278,12 +286,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   isLogin
                       ? "BUY 1 GET 1 FREE THURSDAY".toUpperCase()
-                      // : "Đặt Lại Đơn Gần Nhất",
-                      : "Feedback test",
+                      : "Đặt Lại Đơn Gần Nhất",
                   style: TextStyle(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,
-                    fontSize: 10,
+                    fontSize: 12,
                   ),
                 ),
               ),

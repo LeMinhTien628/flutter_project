@@ -10,6 +10,8 @@ class PromotionListScreen extends StatefulWidget {
 }
 
 class _PromotionListScreenState extends State<PromotionListScreen> {
+  //Lấy danh sách khuyến mãi từ API
+  
   //Danh sách khuyến mãi Model khuyến mãi
   List<String> promotionNames = [
     "70% OFF ON 2ND PIZZA",

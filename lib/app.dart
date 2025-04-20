@@ -10,9 +10,10 @@ import 'package:app_food_delivery/screens/ranking/ranking_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainApp extends StatefulWidget {
-  int selectedScreen = 0;
+  static const routeName = '/main';
+  final int initialIndex; // Tham số để chọn tab ban đầu
 
-  MainApp({super.key});
+  MainApp({super.key, this.initialIndex = 0});
   //MainApp({required selectedScreen});
   @override
   _MainAppState createState() => _MainAppState();
@@ -20,18 +21,23 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   //MainApp a = MainApp(selectedScreen: 1);
-  int _selectedIndex = 0;
+  late int _selectedIndex = 0;
 
   final List<Widget> _screens = [
     Center(child: HomeScreen()),
     Center(child: PromotionScreen()),
     Center(child: MenuScreen()),
     Center(child: OrderScreen()),
-    // Center(child: FeedbackScreen()),
-    // Center(child: FeedbackThankyouScreen()),
     Center(child: RankingScreen()),
     Center(child: ProfileScreen()),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    // Khởi tạo _selectedIndex từ initialIndex
+    _selectedIndex = widget.initialIndex.clamp(0, _screens.length - 1);
+  }
 
   void _onItemTapped(int index) {
     setState(() {

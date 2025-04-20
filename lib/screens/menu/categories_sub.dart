@@ -23,6 +23,10 @@ class _CategoriesSubState extends State<CategoriesSub> {
     "SAUSAGE", "BREAD", "POTATO"
   ];
 
+  //Lấy danh sách sản phẩm từ API theo category
+
+  //Lọc theo category sub từ category chính
+
   @override
   Widget build(BuildContext context) {
     List<String> currentCategories = [];

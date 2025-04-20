@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Import file API service
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/login';
   const LoginScreen({super.key});
 
   @override
@@ -168,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           color: Colors.black87,
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
                       TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -187,10 +188,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.fromLTRB(10, 14, 10, 14),
+                          contentPadding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 10),
                       TextField(
                         controller: _passwordController,
                         obscureText: _isPasswordHidden,
@@ -221,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.fromLTRB(10, 14, 10, 14),
+                          contentPadding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -250,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           ],
                         ),
                       ),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: _isLoading ? null : _handleLogin, // Vô hiệu hóa nút khi đang loading
                         style: ElevatedButton.styleFrom(

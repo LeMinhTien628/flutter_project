@@ -8,6 +8,10 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class BestSeller extends StatelessWidget {
   BestSeller({super.key});
+
+  //Lấy danh sách best seller từ API
+  //Top 5 Sản phẩm có đánh giá cao nhất nhất từ feedback sẽ là bestseller
+
   //Danh sách best seller
   List<String> name = [
     "Seafood Four Seasons",

@@ -364,7 +364,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=> MainApp())
+                          MaterialPageRoute(builder: (context)=> CartScreen())
                         );
                       }, 
                       style: ElevatedButton.styleFrom(
@@ -373,7 +373,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6)
                         ),
-                        //minimumSize: Size(MediaQuery.of(context).size.width, 40)
                       ),
                       child: const Text(
                         "Thêm Vào Giỏ Hàng",

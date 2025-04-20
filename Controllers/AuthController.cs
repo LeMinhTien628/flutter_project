@@ -27,25 +27,25 @@ namespace api_app_pizza_flutter.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
-            if (user == null || user.PasswordHash != request.password) 
+            if (user == null || user.PasswordHash != request.password)
             {
                 return Unauthorized(new { message = "Email hoặc mật khẩu không đúng" });
 
             }
             var token = GenerateJwtToken(user);
-            return Ok(new {Token=token});
+            return Ok(new { Token = token });
 
 
         }
         [HttpPost("register")]
 
-        public async Task<IActionResult> Register([FromBody]  RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             //kiểm tra email hay username đã sử dụng hay chưa
-            if (await _context.Users.AnyAsync(u => u.Email == request.email) )
-               {
+            if (await _context.Users.AnyAsync(u => u.Email == request.email))
+            {
                 return BadRequest("Email đã tồn tại");
-                }
+            }
             if (await _context.Users.AnyAsync(u => u.UserName == request.Username))
             {
                 return BadRequest("UserName đã tồn tại");
@@ -55,7 +55,7 @@ namespace api_app_pizza_flutter.Controllers
                 UserName = request.Username,
                 Email = request.email,
                 PasswordHash = request.passwordHash,
-                Phone=request.phone,
+                Phone = request.phone,
                 ProfilePicture = request.profilePicture ?? "",
                 CreatedDate = DateTime.Now
             };
@@ -63,7 +63,7 @@ namespace api_app_pizza_flutter.Controllers
             await _context.SaveChangesAsync();
             //tạo jwt token cho đăng kí
             var token = GenerateJwtToken(user);
-            return Ok(new {Token=token});
+            return Ok(new { Token = token });
 
 
         }
@@ -77,9 +77,9 @@ namespace api_app_pizza_flutter.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserName),
-                
+
                 new Claim(ClaimTypes.Email, user.Email),
-                
+
 
             };
 
@@ -102,7 +102,8 @@ namespace api_app_pizza_flutter.Controllers
         public required string Email { get; set; }
         public required string password { get; set; }
     }
-    public class RegisterRequest() {
+    public class RegisterRequest()
+    {
 
         [Required(ErrorMessage = "Username là bắt buộc")]
         public required string Username { get; set; }
@@ -118,8 +119,8 @@ namespace api_app_pizza_flutter.Controllers
         [Required(ErrorMessage = "Mật khẩu là bắt buộc")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$", ErrorMessage = "Mật khẩu phải ít nhất 6 ký tự, gồm chữ hoa, chữ thường và số")]
         public required string passwordHash { get; set; }
-        public  string? profilePicture { get; set; }
-        
+        public string? profilePicture { get; set; }
+
     }
 }
 

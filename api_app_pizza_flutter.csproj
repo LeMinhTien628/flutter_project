@@ -15,6 +15,10 @@
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 <Target Name="KillRunningAppBeforeBuild" BeforeTargets="Build">
   <Exec Command="taskkill /F /IM api_app_pizza_flutter.exe" ContinueOnError="true" />
 </Target>

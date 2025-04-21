@@ -1,0 +1,13 @@
+﻿SET IDENTITY_INSERT dbo.Promotions ON
+GO
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (1, N'Giảm 70% Pizza Thứ 2', N'Áp dụng cho tất cả pizza', 10.00, N'Giam70%.png', NULL, '2025-02-01 00:00:00.000', '2025-02-28 00:00:00.000', '2025-01-15 00:00:00.000');
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (2, N'Family Combo Pizza + Nước', N'Mua pizza tặng 1 nước ngọt', 0.00, N'FamilyCombo.png', NULL, '2025-03-01 00:00:00.000', '2025-03-31 00:00:00.000', '2025-02-20 00:00:00.000');
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (3, N'Đồng Giá - Same Price', N'Mua pizza tặng 1 nước ngọt', 0.00, N'DongGia.png', NULL, '2025-03-01 00:00:00.000', '2025-03-31 00:00:00.000', '2025-02-20 00:00:00.000');
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (4, N'Nửa Giá', N'Mua pizza tặng 1 nước ngọt', 0.00, N'NuaGia.png', NULL, '2025-03-01 00:00:00.000', '2025-03-31 00:00:00.000', '2025-02-20 00:00:00.000');
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (5, N'Mua 1 Tặng 1', N'Mua pizza tặng 1 nước ngọt', 0.00, N'Mua1Tang1.png', NULL, '2025-03-01 00:00:00.000', '2025-03-31 00:00:00.000', '2025-02-20 00:00:00.000');
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (6, N'Mua 1 Tặng 1 Thứ 5', N'Mua pizza tặng 1 nước ngọt', 0.00, N'Mua1Tang1Thu5.png', NULL, '2025-03-01 00:00:00.000', '2025-03-31 00:00:00.000', '2025-02-20 00:00:00.000');
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (7, N'Mua 1 Tặng 1 Thứ 3', N'Mua pizza tặng 1 nước ngọt', 0.00, N'Mua1Tang1Thu5.png', NULL, '2025-03-01 00:00:00.000', '2025-03-31 00:00:00.000', '2025-02-20 00:00:00.000');
+INSERT dbo.Promotions(PromotionID, PromotionName, Description, DiscountPercentage, ImageURL, IsMainPromotion, StartDate, EndDate, CreatedDate) VALUES (8, N'Mua 2 Tặng 3', N'Áp dụng cho món gà', 20.00, N'Mua2Tang3.png', 1, '2025-04-01 00:00:00.000', '2025-04-30 00:00:00.000', '2025-03-20 00:00:00.000');
+GO
+SET IDENTITY_INSERT dbo.Promotions OFF
+GO

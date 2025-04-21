@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<StaticDataList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Version>2</Version>
+  <StaticDataLinks>
+    <StaticDataLink>dbo.Addresses</StaticDataLink>
+    <StaticDataLink>dbo.Categories</StaticDataLink>
+    <StaticDataLink>dbo.Feedbacks</StaticDataLink>
+    <StaticDataLink>dbo.OrderDetails</StaticDataLink>
+    <StaticDataLink>dbo.Orders</StaticDataLink>
+    <StaticDataLink>dbo.Products</StaticDataLink>
+    <StaticDataLink>dbo.PromotionProducts</StaticDataLink>
+    <StaticDataLink>dbo.Promotions</StaticDataLink>
+    <StaticDataLink>dbo.Rankings</StaticDataLink>
+    <StaticDataLink>dbo.SubCategories</StaticDataLink>
+    <StaticDataLink>dbo.Suggestions</StaticDataLink>
+    <StaticDataLink>dbo.Toppings</StaticDataLink>
+    <StaticDataLink>dbo.Users</StaticDataLink>
+  </StaticDataLinks>
+</StaticDataList>

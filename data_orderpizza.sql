@@ -149,23 +149,7 @@ GO
 -- =============================================
 -- 7. BẢNG FEEDBACKS
 -- =============================================
-CREATE TABLE Feedbacks (
-    FeedbackID            INT           PRIMARY KEY IDENTITY(1,1),
-    OrderID               INT           NOT NULL,
-    UserID                INT           NOT NULL,
-    CrustRating           TINYINT       NOT NULL CONSTRAINT CK_Feedbacks_CrustRating       CHECK (CrustRating BETWEEN 1 AND 5),
-    SauceRating           TINYINT       NOT NULL CONSTRAINT CK_Feedbacks_SauceRating       CHECK (SauceRating BETWEEN 1 AND 5),
-    CheeseRating          TINYINT       NOT NULL CONSTRAINT CK_Feedbacks_CheeseRating      CHECK (CheeseRating BETWEEN 1 AND 5),
-    ToppingRating         TINYINT       NOT NULL CONSTRAINT CK_Feedbacks_ToppingRating     CHECK (ToppingRating BETWEEN 1 AND 5),
-    OverallTasteRating    TINYINT       NOT NULL CONSTRAINT CK_Feedbacks_OverallTasteRating CHECK (OverallTasteRating BETWEEN 1 AND 5),
-    PresentationRating    TINYINT       NOT NULL CONSTRAINT CK_Feedbacks_PresentationRating CHECK (PresentationRating BETWEEN 1 AND 5),
-    ServiceRating		  TINYINT       NOT NULL CONSTRAINT CK_Feedbacks_ServiceRating      CHECK (ServiceRating BETWEEN 1 AND 5),
-    Comment               NVARCHAR(500) NULL,
-    CreatedDate			  DATETIME      NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (UserID)  REFERENCES Users(UserID)
-);
-GO
+
 
 -- =============================================
 -- 8. BẢNG SUGGESTIONS & RANKINGS
@@ -181,16 +165,7 @@ CREATE TABLE Suggestions (
 );
 GO
 
-CREATE TABLE Rankings (
-    RankingID     INT           PRIMARY KEY IDENTITY(1,1),
-    ProductID     INT           NOT NULL,
-    AverageRating DECIMAL(3,2)  NOT NULL,
-    RankPosition  INT           NOT NULL,
-    Period        NVARCHAR(20)  NOT NULL CONSTRAINT CK_Rankings_Period CHECK (Period IN ('Weekly','Monthly')),
-    CreatedDate   DATETIME      NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
-);
-GO
+
 
 -- =============================================
 -- 9. DML: Thêm dữ liệu mẫu, theo thứ tự tránh FK lỗi

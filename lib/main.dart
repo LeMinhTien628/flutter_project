@@ -2,7 +2,7 @@ import 'package:app_food_delivery/screens/auth/auth_screen.dart';
 import 'package:app_food_delivery/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
+import 'package:app_food_delivery/app.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   debugPaintSizeEnabled = false;
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       // ),
       color: Colors.white,
       //home: MainApp(),
-      home: AuthScreen()
+      home: MainApp()
     );
   }
 }

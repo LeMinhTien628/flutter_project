@@ -60,12 +60,8 @@ namespace api_app_pizza_flutter.Controllers
                 CreatedDate = DateTime.Now
             };
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            //tạo jwt token cho đăng kí
-            var token = GenerateJwtToken(user);
-            return Ok(new { Token = token });
-
-
+            await _context.SaveChangesAsync();          
+            return Ok(user);
         }
         private string GenerateJwtToken(User user)
         {

@@ -9,7 +9,7 @@ namespace api_app_pizza_flutter.Models
         public int ProductId { get; set; } // ID sản phẩm, khóa chính, tham chiếu trong OrderDetails.
 
         [JsonPropertyName("ProductName")]
-        public string ProductName { get; set; } = string.Empty; // Tên sản phẩm, hiển thị trên giao diện.
+        public required string ProductName { get; set; } // Tên sản phẩm, hiển thị trên giao diện.
 
         [JsonPropertyName("Description")]
         public string? Description { get; set; } // Mô tả sản phẩm, hiển thị chi tiết sản phẩm, có thể null.
@@ -28,5 +28,6 @@ namespace api_app_pizza_flutter.Models
 
         [JsonPropertyName("CreatedDate")]
         public DateTime CreatedDate { get; set; } // Ngày tạo sản phẩm, theo dõi thời gian tạo.
+
     }
 }

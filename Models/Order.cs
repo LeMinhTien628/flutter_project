@@ -34,5 +34,6 @@ namespace api_app_pizza_flutter.Models
 
         [JsonPropertyName("CreatedDate")]
         public DateTime CreatedDate { get; set; } // Ngày tạo đơn hàng, theo dõi thời gian tạo.
+       
     }
 }

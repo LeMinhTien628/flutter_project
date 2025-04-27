@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api_app_pizza_flutter.Data
 {
+    //Add-Migration "InitialMigration" khởi tạo database
     // AppDbContext: Quản lý kết nối và ánh xạ các model tới cơ sở dữ liệu.
     public class AppOrderDbContext : DbContext
     {
@@ -43,11 +44,7 @@ namespace api_app_pizza_flutter.Data
             modelBuilder.Entity<Ranking>().HasKey(r => r.RankingId);
 
             // Cấu hình khóa ngoại
-            // SubCategory -> Category
-            modelBuilder.Entity<SubCategory>()
-                .HasOne<Category>()
-                .WithMany()
-                .HasForeignKey(sc => sc.CategoryId);
+           
 
             // Address -> User
             modelBuilder.Entity<Address>()
@@ -136,7 +133,11 @@ namespace api_app_pizza_flutter.Data
                 .HasOne<User>()
                 .WithMany()
                 .HasForeignKey(f => f.UserId);
-
+            // Feedback -> Product
+            modelBuilder.Entity<Feedback>()
+                .HasOne<Product>()
+                .WithMany()
+                .HasForeignKey(f => f.ProductId);
             // Suggestion -> Product (ProductID)
             modelBuilder.Entity<Suggestion>()
                 .HasOne<Product>()

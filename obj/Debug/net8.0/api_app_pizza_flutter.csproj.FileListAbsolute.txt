@@ -144,7 +144,7 @@ E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\obj\Debug\net8.0\refint\api_ap
 E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\obj\Debug\net8.0\api_app_pizza_flutter.pdb
 E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\obj\Debug\net8.0\api_app_pizza_flutter.genruntimeconfig.cache
 E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\obj\Debug\net8.0\ref\api_app_pizza_flutter.dll
-E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\obj\Debug\net8.0\api_app_pizza_flutter.sourcelink.json
 C:\Users\LENOVO\Source\Repos\flutter_project\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\LENOVO\Source\Repos\flutter_project\bin\Debug\net8.0\appsettings.json
 C:\Users\LENOVO\Source\Repos\flutter_project\bin\Debug\net8.0\api_app_pizza_flutter.staticwebassets.endpoints.json
@@ -439,3 +439,11 @@ D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\api\obj\Debug\net8.0\refint\
 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\api\obj\Debug\net8.0\api_app_pizza_flutter.pdb
 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\api\obj\Debug\net8.0\api_app_pizza_flutter.genruntimeconfig.cache
 D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\api\obj\Debug\net8.0\ref\api_app_pizza_flutter.dll
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\bin\Debug\net8.0\Accord.dll
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\bin\Debug\net8.0\Accord.Math.Core.dll
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\bin\Debug\net8.0\Accord.Math.dll
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\bin\Debug\net8.0\Accord.Statistics.dll
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\bin\Debug\net8.0\MathNet.Numerics.dll
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\bin\Debug\net8.0\Accord.dll.config
+E:\KhaiPhaDuLieu\DoAnCuoiKi\api_app_pizza_flutter\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

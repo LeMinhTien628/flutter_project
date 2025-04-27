@@ -8,6 +8,8 @@ namespace api_app_pizza_flutter.Models
         [JsonPropertyName("FeedbackID")]
         public int FeedbackId { get; set; } // ID đánh giá, khóa chính.
 
+        [JsonPropertyName("ProductID")]
+        public int ProductId { get; set; } // ID sản phẩm, liên kết với Products.
         [JsonPropertyName("OrderID")]
         public int OrderId { get; set; } // ID đơn hàng, liên kết với Orders.
 
@@ -40,5 +42,6 @@ namespace api_app_pizza_flutter.Models
 
         [JsonPropertyName("CreatedDate")]
         public DateTime CreatedDate { get; set; } // Ngày tạo đánh giá, theo dõi thời gian.
+
     }
 }

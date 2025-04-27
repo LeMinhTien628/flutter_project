@@ -31,5 +31,6 @@ namespace api_app_pizza_flutter.Models
 
         [JsonPropertyName("ToppingPrice")]
         public decimal ToppingPrice { get; set; } // Giá topping, dùng để tính giá.
+
     }
 }

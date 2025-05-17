@@ -1,176 +1,209 @@
-  import 'package:app_food_delivery/core/constants/app_colors.dart';
-  import 'package:app_food_delivery/screens/cart/cart_sub.dart';
-  import 'package:app_food_delivery/screens/menu/categories_list_product.dart';
-  import 'package:app_food_delivery/screens/menu/categories_main.dart';
-  import 'package:app_food_delivery/screens/promotion/e_voucher_screen.dart';
-  import 'package:app_food_delivery/screens/promotion/promotion_list_screen.dart';
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:app_food_delivery/api/category_service.dart';
+import 'package:app_food_delivery/api/sub_category_service.dart';
+import 'package:app_food_delivery/api/product_service.dart';
+import 'package:app_food_delivery/core/constants/app_colors.dart';
+import 'package:app_food_delivery/models/category_model.dart';
+import 'package:app_food_delivery/models/sub_category_model.dart';
+import 'package:app_food_delivery/models/product_model.dart';
+import 'package:app_food_delivery/screens/menu/categories_main.dart';
+import 'package:app_food_delivery/screens/menu/categories_sub.dart';
+import 'package:app_food_delivery/screens/menu/categories_list_product.dart';
+import 'package:app_food_delivery/screens/cart/cart_sub.dart';
 
-  class MenuScreen extends StatefulWidget {
-    const MenuScreen({super.key});
+class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
 
-    @override
-    State<MenuScreen> createState() => _MenuScreenState();
+  @override
+  State<MenuScreen> createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen> {
+  final _catSvc = CategoryService();
+  final _subSvc = SubCategoryService();
+  final _prodSvc = ProductService();
+
+  late Future<void> _initFut;
+  List<CategoryModel> _cats = [];
+  List<SubCategoryModel> _subs = [];
+  List<ProductModel> _allProds = [];
+
+  int _selCat = 0;
+  int _selSub = 0;
+  int _selectedButton = 1;
+
+  final List<String> _catIcons = [
+    "assets/images/category_pizza.png",
+    "assets/images/category_chicken.png",
+    "assets/images/category_pasta.png",
+    "assets/images/category_appetizer.png",
+    "assets/images/category_desser.png",
+    "assets/images/category_drink.png",
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _initFut = _loadAll();
   }
 
-  class _MenuScreenState extends State<MenuScreen> {
-    // Khai báo biến để lưu trạng thái của các nút bấm
-    // 0: Carry Out, 1: Delivery
-    int selectedButton = 1; 
-    
-    //Lấy số lượng trong giỏ hàng
-    int qualityCart = 10;
-    
-    void onToggleButton(int buttonIndex){
-      setState(() {
-        selectedButton = buttonIndex;
-      });
-    }
-    @override
-    Widget build(BuildContext context) {
-      return SafeArea(
-        child: Container(
-          child: Column(
+  Future<void> _loadAll() async {
+    _cats = await _catSvc.getCategories();
+    _subs = await _subSvc.getSubCategories();
+    _allProds = await _prodSvc.getProducts();
+  }
+
+  void _onCatTap(int idx) {
+    setState(() {
+      _selCat = idx;
+      _selSub = 0;
+    });
+  }
+
+  void _onSubTap(int idx) {
+    setState(() => _selSub = idx);
+  }
+
+  void _toggleButton(int idx) {
+    setState(() => _selectedButton = idx);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: FutureBuilder<void>(
+        future: _initFut,
+        builder: (context, snap) {
+          if (snap.connectionState != ConnectionState.done) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (_cats.isEmpty) {
+            return const Center(child: Text('Không có danh mục'));
+          }
+
+          // Filter sub-categories and products
+          final curCatId = _cats[_selCat].categoryId;
+          final subsOfCat = _subs.where((s) => s.categoryId == curCatId).toList();
+
+          // Nếu có sub-category thì clamp _selSub về 0..subsOfCat.length-1, ngược lại cho = 0
+          final safeSub = subsOfCat.isNotEmpty
+            ? (_selSub < 0
+                ? 0
+                : (_selSub >= subsOfCat.length
+                    ? subsOfCat.length - 1
+                    : _selSub))
+            : 0;
+
+          // Giờ safeSub chắc chắn là int trong khoảng 0..subsOfCat.length-1
+          final curSubId = subsOfCat.isNotEmpty
+              ? subsOfCat[safeSub].subCategoryId
+              : null;
+
+          // Cuối cùng filter product theo main và sub categories
+          final filteredProds = _allProds.where((p) {
+            return p.categoryId == curCatId &&
+                (curSubId == null || p.subCategoryId == curSubId);
+          }).toList();
+
+
+          return Column(
             children: [
-               // Button Delivery - Carry Out
-              Container(
-                margin: EdgeInsets.only(left: 10, right: 10),
+              // Delivery / Carry Out Toggle
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 128,
-                      margin: EdgeInsets.only(top: 4),
+                    Expanded(
                       child: GestureDetector(
                         onTap: () {},
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(8, 8, 0, 8),
+                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: AppColors.background,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(4),
-                              bottomLeft: Radius.circular(4)
+                              bottomLeft: Radius.circular(4),
                             ),
-                            border: Border.all(
-                              width: 1,
-                              color: AppColors.border
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.3),
-                                offset: Offset(1, 1),
-                                blurRadius: 1,
-                                spreadRadius: 1,
-                              )
-                            ]
+                            border: Border.all(color: AppColors.border),
                           ),
                           child: Text(
-                            selectedButton == 1 ? "Choose Address" : "Please Select Store",
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: AppColors.textPrimary
-                            ),    
-                            textAlign: TextAlign.left,
+                            _selectedButton == 1
+                                ? 'Choose Address'
+                                : 'Please Select Store',
+                            style: const TextStyle(fontSize: 10),
                           ),
                         ),
                       ),
                     ),
+                    const SizedBox(width: 8),
                     Container(
-                      margin: EdgeInsets.only(top: 20, bottom: 16),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.backgroudGreyBland,
-                          borderRadius: BorderRadius.circular(4),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
-                              offset: Offset(1, 1),
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                            )
-                          ]
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: ()=>onToggleButton(1),
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.bounceInOut, // vào chậm – bật ra nhanh – rồi nảy nhẹ
-                                padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
-                                decoration: BoxDecoration(
-                                  color: selectedButton == 1 ? AppColors.buttonPrimary : AppColors.backgroudGreyBland,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Text(
-                                  "Delivery",
-                                  style: TextStyle(
-                                    color: selectedButton == 1 ?Colors.white : AppColors.textSecondary,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap:()=>onToggleButton(0),
-                              child: AnimatedContainer(
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                                padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
-                                decoration: BoxDecoration(
-                                  color: selectedButton == 0 ? AppColors.buttonPrimary : AppColors.backgroudGreyBland,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Text(
-                                  "Carry Out",
-                                  style: TextStyle(
-                                    color: selectedButton == 0 ?Colors.white : AppColors.textSecondary,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      decoration: BoxDecoration(
+                        color: AppColors.backgroudGreyBland,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Row(
+                        children: [
+                          _buildToggle('Delivery', 1),
+                          _buildToggle('Carry Out', 0),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ),
-              
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.backgroudGreyBland
-                ),
-                child: CategoriesMain(),
               ),
 
-              //Nội dung          
-              Flexible(
-                child: Stack(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height,
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroudGreyBland
-                      ),
-                      child: CategoriesListProduct(),
-                    ),
-                    //Giỏ hàng
-                    CartSub()
-                  ],
-                )
-              )
-            
+              // Categories Main
+              CategoriesMain(
+                categories: _cats,
+                selectedIndex: _selCat,
+                onTap: _onCatTap,
+                icons: _catIcons,
+              ),
+
+              // Categories Sub
+              CategoriesSub(
+                subCategories: subsOfCat,
+                selectedIndex: safeSub,
+                onTap: _onSubTap,
+              ),
+
+              // Product List
+              Expanded(
+                child: filteredProds.isEmpty
+                    ? const Center(child: Text('Không có sản phẩm'))
+                    : CategoriesListProduct(products: filteredProds),
+              ),
+
+              // Cart Overlay
+              //CartSub(),
             ],
-          ),
-        )
-      );
-    }
+          );
+        },
+      ),
+    );
   }
+
+  Widget _buildToggle(String label, int idx) {
+    final isSel = _selectedButton == idx;
+    return GestureDetector(
+      onTap: () => _toggleButton(idx),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSel ? AppColors.buttonPrimary : AppColors.backgroudGreyBland,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: isSel ? Colors.white : AppColors.textSecondary,
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+}

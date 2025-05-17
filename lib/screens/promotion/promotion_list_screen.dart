@@ -41,7 +41,7 @@ class _PromotionListScreenState extends State<PromotionListScreen> {
         children: [
           // Khuyến mãi chính
           Container(
-            padding: const EdgeInsets.all(4),
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 4),
             margin: const EdgeInsets.fromLTRB(16, 8, 16, 16),
             decoration: BoxDecoration(
               color: AppColors.background,
@@ -133,7 +133,7 @@ class _PromotionListScreenState extends State<PromotionListScreen> {
                     crossAxisCount: 2,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
-                    childAspectRatio: 2 / 3,
+                    childAspectRatio: 2 / 2.5,
                   ),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -141,6 +141,7 @@ class _PromotionListScreenState extends State<PromotionListScreen> {
                   itemBuilder: (context, index) {
                     final promotion = promotions[index];
                     return Container(
+                      padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
                       decoration: BoxDecoration(
                         color: AppColors.background,
                         borderRadius: BorderRadius.circular(6),

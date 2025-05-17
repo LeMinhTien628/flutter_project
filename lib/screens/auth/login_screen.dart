@@ -18,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final AuthService _AuthService = AuthService(); // Khởi tạo AuthService
   bool _isPasswordHidden = true;
   bool _isAgree = false;

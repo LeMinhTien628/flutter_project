@@ -13,4 +13,6 @@ class AppStrings {
   static const String settings = "Cài đặt";
   static const String logout = "Đăng xuất";
   static const String tienTe = " ₫";
+  static const String noDescription = "Không có mô tả";
+  static const String noData = "Không có dữ liệu";
 }

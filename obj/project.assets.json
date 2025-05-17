@@ -18,6 +18,24 @@
           "build/Accord.targets": {}
         }
       },
+      "Accord.MachineLearning/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0",
+          "Accord.Math": "3.8.0",
+          "Accord.Statistics": "3.8.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Accord.MachineLearning.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Accord.MachineLearning.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Accord.Math/3.8.0": {
         "type": "package",
         "dependencies": {
@@ -1665,6 +1683,39 @@
         "lib/netstandard1.4/Accord.xml",
         "lib/netstandard2.0/Accord.dll",
         "lib/netstandard2.0/Accord.xml"
+      ]
+    },
+    "Accord.MachineLearning/3.8.0": {
+      "sha512": "6d8HY6/S4t5LBgD4YWrHISDX4q9s/caBu4fbHhq5RH2U4ETbtnDcvwgtsqGHKH1FyPylWFOniYjLO4B4xkEEuw==",
+      "type": "package",
+      "path": "accord.machinelearning/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "accord.machinelearning.3.8.0.nupkg.sha512",
+        "accord.machinelearning.nuspec",
+        "lib/net35-unity full v3.5/Accord.MachineLearning.dll",
+        "lib/net35-unity full v3.5/Accord.MachineLearning.xml",
+        "lib/net35-unity micro v3.5/Accord.MachineLearning.dll",
+        "lib/net35-unity micro v3.5/Accord.MachineLearning.xml",
+        "lib/net35-unity subset v3.5/Accord.MachineLearning.dll",
+        "lib/net35-unity subset v3.5/Accord.MachineLearning.xml",
+        "lib/net35-unity web v3.5/Accord.MachineLearning.dll",
+        "lib/net35-unity web v3.5/Accord.MachineLearning.xml",
+        "lib/net35/Accord.MachineLearning.dll",
+        "lib/net35/Accord.MachineLearning.xml",
+        "lib/net40/Accord.MachineLearning.dll",
+        "lib/net40/Accord.MachineLearning.xml",
+        "lib/net45/Accord.MachineLearning.dll",
+        "lib/net45/Accord.MachineLearning.xml",
+        "lib/net46/Accord.MachineLearning.dll",
+        "lib/net46/Accord.MachineLearning.xml",
+        "lib/net462/Accord.MachineLearning.dll",
+        "lib/net462/Accord.MachineLearning.xml",
+        "lib/netstandard1.4/Accord.MachineLearning.dll",
+        "lib/netstandard1.4/Accord.MachineLearning.xml",
+        "lib/netstandard2.0/Accord.MachineLearning.dll",
+        "lib/netstandard2.0/Accord.MachineLearning.xml"
       ]
     },
     "Accord.Math/3.8.0": {
@@ -4432,6 +4483,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Accord.MachineLearning >= 3.8.0",
+      "Accord.Math >= 3.8.0",
       "Accord.Statistics >= 3.8.0",
       "MathNet.Numerics >= 5.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.10",
@@ -4442,23 +4495,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\THANH NGAN\\.nuget\\packages\\": {},
+    "C:\\Users\\LENOVO\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\api_app_pizza_flutter.csproj",
+      "projectUniqueName": "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\api_app_pizza_flutter.csproj",
       "projectName": "api_app_pizza_flutter",
-      "projectPath": "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\api_app_pizza_flutter.csproj",
-      "packagesPath": "C:\\Users\\THANH NGAN\\.nuget\\packages\\",
-      "outputPath": "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\obj\\",
+      "projectPath": "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\api_app_pizza_flutter.csproj",
+      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+      "outputPath": "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\THANH NGAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4491,6 +4544,14 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Accord.MachineLearning": {
+            "target": "Package",
+            "version": "[3.8.0, )"
+          },
+          "Accord.Math": {
+            "target": "Package",
+            "version": "[3.8.0, )"
+          },
           "Accord.Statistics": {
             "target": "Package",
             "version": "[3.8.0, )"
@@ -4541,7 +4602,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

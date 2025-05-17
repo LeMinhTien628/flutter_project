@@ -14,8 +14,8 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5021",
-      // cd D:\HK2_Nam3\KhaiPhaDuLieu\KHAIPHADULIEU_NHOM13\DOAN\flutter_project-feature-api_app_pizza
+      "applicationUrl": "http://0.0.0.0:5021",
+      // cd D:\HK2_Nam3\KhaiPhaDuLieu\DO AN\DO AN CUOI KI\flutter_project-feature-api_app_pizza
       // dotnet build
       // dotnet run --urls "http://0.0.0.0:5021"
       // http://localhost:5021/swagger

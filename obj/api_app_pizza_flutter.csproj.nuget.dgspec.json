@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\api_app_pizza_flutter.csproj": {}
+    "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\api_app_pizza_flutter.csproj": {}
   },
   "projects": {
-    "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\api_app_pizza_flutter.csproj": {
+    "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\api_app_pizza_flutter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\api_app_pizza_flutter.csproj",
+        "projectUniqueName": "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\api_app_pizza_flutter.csproj",
         "projectName": "api_app_pizza_flutter",
-        "projectPath": "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\api_app_pizza_flutter.csproj",
-        "packagesPath": "C:\\Users\\THANH NGAN\\.nuget\\packages\\",
-        "outputPath": "E:\\KhaiPhaDuLieu\\DoAnCuoiKi\\api_app_pizza_flutter\\obj\\",
+        "projectPath": "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\api_app_pizza_flutter.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "D:\\HK2_Nam3\\KhaiPhaDuLieu\\DOAN\\DOAN\\flutter_project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\THANH NGAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -50,6 +50,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Accord.MachineLearning": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
+            "Accord.Math": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
             "Accord.Statistics": {
               "target": "Package",
               "version": "[3.8.0, )"
@@ -100,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

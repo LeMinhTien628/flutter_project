@@ -1,5 +1,5 @@
 import 'package:app_food_delivery/app.dart';
-import 'package:app_food_delivery/api/api_service.dart';
+import 'package:app_food_delivery/api/auth_service.dart';
 import 'package:app_food_delivery/screens/auth/register_screen.dart';
 import 'package:app_food_delivery/widgets/custom_checkbox.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Import file API service
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/login';
   const LoginScreen({super.key});
 
   @override
@@ -17,7 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final ApiService _apiService = ApiService(); // Khởi tạo ApiService
+  final AuthService _AuthService = AuthService(); // Khởi tạo AuthService
   bool _isPasswordHidden = true;
   bool _isAgree = false;
   bool _isLoading = false; // Trạng thái loading
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     });
 
     try {
-      final response = await _apiService.login(email,password);
+      final response = await _AuthService.login(email,password);
       await _saveToken(response.token); // Lưu token
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Đăng nhập thành công')),
@@ -168,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           color: Colors.black87,
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
                       TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -187,10 +188,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.fromLTRB(10, 14, 10, 14),
+                          contentPadding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 10),
                       TextField(
                         controller: _passwordController,
                         obscureText: _isPasswordHidden,
@@ -221,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.fromLTRB(10, 14, 10, 14),
+                          contentPadding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -250,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           ],
                         ),
                       ),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: _isLoading ? null : _handleLogin, // Vô hiệu hóa nút khi đang loading
                         style: ElevatedButton.styleFrom(

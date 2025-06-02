@@ -5,6 +5,7 @@ import 'package:app_food_delivery/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {
+  static const routeName = '/auth';
   const AuthScreen({super.key});
 
   @override

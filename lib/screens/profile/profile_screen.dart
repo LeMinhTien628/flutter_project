@@ -13,6 +13,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   int qualityNofication = 90;
   bool isButtonLanguage = false;
+
+  //Lây thông tin user từ API
   @override
   Widget build(BuildContext context) {
     return Stack(

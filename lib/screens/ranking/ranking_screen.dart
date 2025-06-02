@@ -1,12 +1,14 @@
+import 'package:app_food_delivery/app.dart';
 import 'package:app_food_delivery/core/constants/app_colors.dart';
 import 'package:app_food_delivery/core/constants/app_padding.dart';
 import 'package:app_food_delivery/core/constants/app_strings.dart';
 import 'package:app_food_delivery/core/utils/format_utils.dart';
-import 'package:app_food_delivery/screens/home/best_seller.dart';
+import 'package:app_food_delivery/screens/cart/cart_screen.dart';
 import 'package:app_food_delivery/screens/product/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class RankingScreen extends StatefulWidget {
+  static const routeName = '/ranking';
   const RankingScreen({super.key});
 
   @override
@@ -16,7 +18,16 @@ class RankingScreen extends StatefulWidget {
 class _RankingScreenState extends State<RankingScreen> {
   int selectedFilter = 0;
 
-  final List<String> filters = ['Bán chạy', 'Đánh giá cao', 'Mới nhất'];
+  //Fillter lọc sản phẩm theo các tiêu chí
+  // Bán chạy, Đánh giá cao, Mới nhất
+  final List<String> filters = ['Bán chạy', 'Theo tuần', 'Theo tháng'];
+
+  //Danh sách các sản phẩm đã được đánh giá anova 
+  //Lọc ra top 3 điểm cao nhất
+  
+  //Top 7 sản phẩm còn lại
+
+  //Danh sách các sản phẩm nổi bật nhất dựa theo anova tiêu chí khác như ăn nhiều, rẻ, ngon
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +193,10 @@ class _RankingScreenState extends State<RankingScreen> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      print("Thêm Pizza Hải Sản vào giỏ hàng");
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context)=>CartScreen())
+                                      );
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: AppColors.primary,
@@ -196,7 +210,12 @@ class _RankingScreenState extends State<RankingScreen> {
                                   SizedBox(width: 8,),
                                   ElevatedButton(
                                     onPressed: () {
-                                      print("Thêm Pizza Hải Sản vào giỏ hàng");
+                                      Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        MainApp.routeName,
+                                        (Route<dynamic> route) => false,
+                                        arguments: 2, // Tab Menu
+                                      );
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: AppColors.primary,
@@ -299,7 +318,10 @@ class _RankingScreenState extends State<RankingScreen> {
                                       const SizedBox(height: 12),
                                       ElevatedButton.icon(
                                         onPressed: () {
-                                          print("Thêm Pizza Hải Sản vào giỏ hàng");
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context)=>CartScreen())
+                                         );
                                         },
                                         style: ElevatedButton.styleFrom(
                                           padding: EdgeInsets.fromLTRB(14, 8, 6, 8),
@@ -406,7 +428,10 @@ class _RankingScreenState extends State<RankingScreen> {
                                           children: [
                                             ElevatedButton.icon(
                                               onPressed: () {
-                                                print("Thêm Pizza Hải Sản vào giỏ hàng");
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(builder: (context)=>CartScreen())
+                                                );
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 padding: EdgeInsets.fromLTRB(12, 6, 4, 6),
@@ -429,7 +454,12 @@ class _RankingScreenState extends State<RankingScreen> {
                                             SizedBox(width: 8,),
                                             ElevatedButton.icon(
                                               onPressed: () {
-                                                print("Thêm Pizza Hải Sản vào giỏ hàng");
+                                                Navigator.pushNamedAndRemoveUntil(
+                                                  context,
+                                                  MainApp.routeName,
+                                                  (Route<dynamic> route) => false,
+                                                  arguments: 2, // Tab Menu
+                                                );  
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 padding: EdgeInsets.fromLTRB(12, 6, 4, 6),
@@ -704,7 +734,12 @@ class _RankingScreenState extends State<RankingScreen> {
                       height: 30,
                       child: ElevatedButton.icon(
                         onPressed: () {
-                          print("Thêm Pizza Hải Sản vào giỏ hàng");
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            MainApp.routeName,
+                            (Route<dynamic> route) => false,
+                            arguments: 2, // Tab Menu
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
@@ -733,7 +768,10 @@ class _RankingScreenState extends State<RankingScreen> {
                       height: 30,
                       child:  ElevatedButton.icon(
                         onPressed: () {
-                          print("Thêm Pizza Hải Sản vào giỏ hàng");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=>CartScreen())
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.fromLTRB(6, 2, 2, 2),

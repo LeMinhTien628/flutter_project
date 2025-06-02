@@ -1,44 +1,44 @@
-//# 👤 Thông tin người dùng (id, tên, email, số điện thoại)
+// UserModel: Chức năng đăng nhập, đăng ký và quản lý thông tin người dùng.
+class UserModel {
+  final int userId; // ID người dùng, khóa chính, tham chiếu trong Orders, Addresses.
+  final String username; // Tên người dùng, dùng để đăng nhập hoặc hiển thị.
+  final String email; // Email, dùng để đăng nhập hoặc gửi thông báo.
+  final String phone; // Số điện thoại, dùng để liên hệ hoặc xác thực.
+  final String passwordHash; // Mật khẩu mã hóa, dùng để xác thực đăng nhập.
+  final String? profilePicture; // URL ảnh đại diện, hiển thị trong hồ sơ.
+  final DateTime createdDate; // Ngày tạo tài khoản, theo dõi thời gian tạo.
 
-class LoginRequest {
-  final String email;
-  final String password;
-  LoginRequest({required this.email, required this.password});
-  Map<String, dynamic> toJson() => {'Email': email, 'Password': password};
-}
-
-class LoginReponse {
-  final String token;
-  LoginReponse({required this.token});
-  factory LoginReponse.fromJson(Map<String, dynamic> json) {
-    return LoginReponse(token: json['Token'] ?? '');
-  }
-}
-
-class RegisterRequest {
-  final String username;
-  final String phone;
-  final String email;
-  final String password;
-
-  RegisterRequest({
+  UserModel({
+    required this.userId,
     required this.username,
-    required this.phone,
     required this.email,
-    required this.password,
+    required this.phone,
+    required this.passwordHash,
+    this.profilePicture,
+    required this.createdDate,
   });
-  Map<String, dynamic> toJson() => {
-    'Username': username,
-    'email': email,
-    'phone': phone,
-    'passwordHash': password,
-  };
-}
 
-class RegisterReponse {
-  final String token;
-  RegisterReponse({required this.token});
-  factory RegisterReponse.fromJson(Map<String, dynamic> json) {
-    return RegisterReponse(token: json['Token'] ?? '');
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      userId: json['UserID'] as int,
+      username: json['UserName'] as String,
+      email: json['Email'] as String,
+      phone: json['Phone'] as String,
+      passwordHash: json['PasswordHash'] as String,
+      profilePicture: json['ProfilePicture'] as String?,
+      createdDate: DateTime.parse(json['CreatedDate'] as String),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'UserID': userId,
+      'Username': username,
+      'Email': email,
+      'Phone': phone,
+      'PasswordHash': passwordHash,
+      'ProfilePicture': profilePicture,
+      'CreatedDate': createdDate.toIso8601String(),
+    };
   }
 }

@@ -11,7 +11,7 @@ class CategoriesMain extends StatefulWidget {
 
 class _CategoriesMainState extends State<CategoriesMain> {
   int selectedItem = 0;
-  //Danh sách category ten + ảnh
+  //Danh sách category lấy từ API
   List<String> categoriesName = [
     "PIZZA", "CHICKEN", "PASTA", "APPETIZER", "DESSERT", "DRINKS"
   ];
@@ -23,6 +23,12 @@ class _CategoriesMainState extends State<CategoriesMain> {
     "assets/images/category_desser.png",
     "assets/images/category_drink.png",
   ];
+
+  //Lấy danh sách sản phẩm từ API theo category
+
+  //Lọc theo category
+
+  
 
   void updateSelectedItem(int index) {
     setState(() {

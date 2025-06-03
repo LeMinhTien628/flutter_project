@@ -10,6 +10,9 @@ using System.Text;
 using System.Runtime.CompilerServices;
 using System.Numerics;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
+using System.Linq;
+
 namespace api_app_pizza_flutter.Controllers
 {
     [Route("api/[controller]")]
@@ -33,7 +36,7 @@ namespace api_app_pizza_flutter.Controllers
 
             }
             var token = GenerateJwtToken(user);
-            return Ok(new { Token = token });
+            return Ok(new { token = token });
 
 
         }
@@ -63,6 +66,33 @@ namespace api_app_pizza_flutter.Controllers
             await _context.SaveChangesAsync();          
             return Ok(user);
         }
+
+        [Authorize]
+        [HttpGet("me")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var username = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(username))
+                return Unauthorized();
+
+            var user = await _context.Users
+                .Where(u => u.UserName == username)
+                .Select(u => new {
+                    u.UserId,
+                    u.UserName,
+                    u.Email,
+                    u.Phone,
+                    u.ProfilePicture,
+                    u.CreatedDate
+                })
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
+        }
+
         private string GenerateJwtToken(User user)
         {
             var jwtKey = _configuration["Jwt:Key"];
@@ -70,16 +100,14 @@ namespace api_app_pizza_flutter.Controllers
             {
                 throw new InvalidOperationException("JWT Key is not configured.");
             }
+
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserName),
-
                 new Claim(ClaimTypes.Email, user.Email),
-
-
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(

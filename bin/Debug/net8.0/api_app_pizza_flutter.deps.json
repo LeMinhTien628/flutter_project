@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "api_app_pizza_flutter/1.0.0": {
         "dependencies": {
+          "Accord.MachineLearning": "3.8.0",
+          "Accord.Math": "3.8.0",
           "Accord.Statistics": "3.8.0",
           "MathNet.Numerics": "5.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.10",
@@ -23,6 +25,19 @@
       "Accord/3.8.0": {
         "runtime": {
           "lib/netstandard2.0/Accord.dll": {
+            "assemblyVersion": "3.8.0.0",
+            "fileVersion": "3.8.0.6134"
+          }
+        }
+      },
+      "Accord.MachineLearning/3.8.0": {
+        "dependencies": {
+          "Accord": "3.8.0",
+          "Accord.Math": "3.8.0",
+          "Accord.Statistics": "3.8.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Accord.MachineLearning.dll": {
             "assemblyVersion": "3.8.0.0",
             "fileVersion": "3.8.0.6134"
           }
@@ -999,6 +1014,13 @@
       "sha512": "sha512-7kJrB570dO5ELim+2KWQNozuvWO9/BuZfZspdFy36fcWPNF2CEccblLuILeUlI8QJYd2DlBy0bfK8BlCx/uayA==",
       "path": "accord/3.8.0",
       "hashPath": "accord.3.8.0.nupkg.sha512"
+    },
+    "Accord.MachineLearning/3.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6d8HY6/S4t5LBgD4YWrHISDX4q9s/caBu4fbHhq5RH2U4ETbtnDcvwgtsqGHKH1FyPylWFOniYjLO4B4xkEEuw==",
+      "path": "accord.machinelearning/3.8.0",
+      "hashPath": "accord.machinelearning.3.8.0.nupkg.sha512"
     },
     "Accord.Math/3.8.0": {
       "type": "package",

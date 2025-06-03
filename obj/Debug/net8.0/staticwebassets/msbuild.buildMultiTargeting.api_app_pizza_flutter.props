@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\api_app_pizza_flutter.props" />
-</Project>

@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Accord.Statistics.Analysis;
+using Accord.Statistics.Testing;
 using api_app_pizza_flutter.Data;
 using api_app_pizza_flutter.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MathNet.Numerics.Distributions;
-using Accord.Statistics.Testing;
-using Accord.Statistics.Distributions.Univariate;
+
 namespace api_app_pizza_flutter.Controllers
 {
     [Route("api/[controller]")]
@@ -21,169 +21,149 @@ namespace api_app_pizza_flutter.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public IActionResult GetRankings(string period = "Weekly")
+
+       
+
+        [HttpGet("export-feedbacks")]
+        public IActionResult ExportFeedbacksToCsv()
+        {
+            
+            var data = (from f in _context.Feedbacks
+                        join p in _context.Products on f.ProductId equals p.ProductId
+                        select new
+                        {
+                            f.FeedbackId,
+                            f.ProductId,
+                            p.ProductName,
+                            f.OverallTasteRating
+                        }).ToList();
+
+            var csv = "FeedbackId,ProductId,ProductName,OverallTasteRating\n";
+            foreach (var row in data)
+            {
+                csv += $"{row.FeedbackId},{row.ProductId},\"{row.ProductName}\",{row.OverallTasteRating}\n";
+            }
+
+            var bytes = System.Text.Encoding.UTF8.GetPreamble().Concat(System.Text.Encoding.UTF8.GetBytes(csv)).ToArray();
+            return File(bytes, "text/csv", "feedbacks.csv");
+        }
+
+        [HttpPost("generate")]
+        public IActionResult GenerateRankings(string period = "Weekly")
         {
             try
             {
-                // Bước 1: Lấy đánh giá cho các sản phẩm pizza (CategoryId = 1)
-                var ratingsData = _context.Feedbacks
-                    .Join(_context.Products,
-                        f => f.ProductId,
-                        p => p.ProductId,
-                        (f, p) => new { f.ProductId, p.ProductName, f.OverallTasteRating, p.CategoryId })
-                    .Where(x => x.CategoryId == 1)
+                // 1. Truy vấn dữ liệu đánh giá từng pizza (feedback gắn trực tiếp với ProductId)
+                var data = (from f in _context.Feedbacks
+                            join p in _context.Products on f.ProductId equals p.ProductId
+                            where f.OverallTasteRating >= 1 && f.OverallTasteRating <= 5
+                            select new
+                            {
+                                p.ProductId,
+                                p.ProductName,
+                                f.OverallTasteRating
+                            }).ToList();
+
+                // 2. Gom nhóm dữ liệu theo từng loại pizza cho ANOVA, chỉ lấy nhóm có ít nhất 2 giá trị
+                var groupNames = data
+                    .GroupBy(x => x.ProductName)
+                    .Select(g => g.Key)
                     .ToList();
 
-                // Sử dụng lớp GroupedRating để lưu trữ dữ liệu nhóm
-                var groupedRatings = ratingsData
-                    .GroupBy(x => new { x.ProductId, x.ProductName })
-                    .Select(g => new GroupedRating
+                var groups = data
+                    .GroupBy(x => x.ProductName)
+                    .Select(g => g
+                        .Select(x => (double)x.OverallTasteRating)
+                        .Where(r => !double.IsNaN(r) && !double.IsInfinity(r))
+                        .ToArray())
+                    .Where(arr => arr.Length > 1 && arr.All(r => !double.IsNaN(r) && !double.IsInfinity(r)))
+                    .ToArray();
+
+                if (groups.Length < 2)
+                {
+                    return StatusCode(400, "Không đủ dữ liệu hợp lệ để thực hiện ANOVA.");
+                }
+
+                // 3. Chạy ANOVA một chiều
+                var anova = new OneWayAnova(groups);
+                double fStatistic = anova.FTest.Statistic;
+                double pValue = anova.FTest.PValue;
+                bool significant = pValue < 0.05;
+
+                // 4. Nếu có sự khác biệt, thực hiện kiểm tra hậu nghiệm (t-test từng cặp, Bonferroni correction)
+                List<object> postHocResults = new();
+                if (significant)
+                {
+                    for (int i = 0; i < groups.Length; i++)
                     {
-                        ProductId = g.Key.ProductId,
-                        ProductName = g.Key.ProductName,
-                        Ratings = g.Select(x => (double)x.OverallTasteRating).ToList(),
-                        RatingCount = g.Count(),
+                        for (int j = i + 1; j < groups.Length; j++)
+                        {
+                            var ttest = new TwoSampleTTest(groups[i], groups[j], assumeEqualVariances: false);
+                            double p = ttest.PValue * (groups.Length * (groups.Length - 1) / 2); // Bonferroni correction
+                            p = Math.Min(p, 1.0); // Đảm bảo p-value không vượt quá 1.0
+                            postHocResults.Add(new
+                            {
+                                Group1 = groupNames[i],
+                                Group2 = groupNames[j],
+                                MeanDifference = groups[i].Average() - groups[j].Average(),
+                                PValue = p,
+                                Significant = p < 0.05
+                            });
+                        }
+                    }
+                }
+
+                // 5. Tính trung bình và xếp hạng
+                var rankings = data
+                    .GroupBy(x => new { x.ProductId, x.ProductName })
+                    .Select(g => new
+                    {
+                        g.Key.ProductId,
+                        g.Key.ProductName,
                         AverageRating = g.Average(x => x.OverallTasteRating)
                     })
-                    .Where(x => x.RatingCount >= 5) // Yêu cầu ít nhất 5 đánh giá
-                    .ToList();
-
-                if (!groupedRatings.Any())
-                {
-                    return NotFound("Không tìm thấy sản phẩm pizza nào có đủ số lượng đánh giá.");
-                }
-
-                // Bước 2: Thực hiện ANOVA
-                var anovaResult = PerformAnova(groupedRatings);
-
-                // Bước 3: Xếp hạng pizza theo điểm trung bình
-                var rankings = groupedRatings
                     .OrderByDescending(x => x.AverageRating)
-                    .Select((x, index) => new Ranking
-                    {
-                        ProductId = x.ProductId,
-                        AverageRating = (decimal)x.AverageRating, // Đảm bảo kiểu decimal khớp với mô hình
-                        RankPosition = index + 1,
-                        Period = period,
-                        CreatedDate = DateTime.UtcNow
-                    })
                     .ToList();
 
-                // Bước 4: Xóa các xếp hạng hiện có cho khoảng thời gian này
-                DateTime cutoffDate;
-                if (period=="Weekly")
+                // 6. Ghi vào bảng Rankings
+                int rank = 1;
+                var rankingEntities = rankings.Select(item => new Ranking
                 {
-                    cutoffDate = DateTime.UtcNow.AddDays(-7);//xóa dữ liệu tuần trước
-                }
-                else if (period == "Monthly")
-                {
-                    cutoffDate = DateTime.UtcNow.AddMonths(-1);//xóa dữ liệu tháng trước
-                }
-                else
-                {
-                    return BadRequest("Chu kỳ không hợp lệ. Vui lòng sử dụng 'Weekly' hoặc 'Monthly'.");
-                }
-                var existingRankings = _context.Rankings
-                    .Where(r => r.Period == period && r.CreatedDate < cutoffDate)
-                    .ToList();
-                _context.Rankings.RemoveRange(existingRankings);
+                    ProductId = item.ProductId,
+                    AverageRating = Math.Round((decimal)item.AverageRating, 2),
+                    RankPosition = rank++,
+                    Period = period,
+                    CreatedDate = DateTime.UtcNow
+                }).ToList();
 
-                // Bước 5: Lưu xếp hạng mới
-                _context.Rankings.AddRange(rankings);
+                _context.Rankings.AddRange(rankingEntities);
                 _context.SaveChanges();
 
-                // Bước 6: Chuẩn bị phản hồi
-                var response = rankings
-                    .Join(_context.Products,
-                        r => r.ProductId,
-                        p => p.ProductId,
-                        (r, p) => new
-                        {
-                            r.ProductId,
-                            p.ProductName,
-                            r.AverageRating,
-                            r.RankPosition,
-                            r.Period,
-                            CreatedDate = r.CreatedDate.ToString("yyyy-MM-dd")
-                        })
-                    .OrderBy(r => r.RankPosition)
-                    .ToList();
-
+                // 7. Trả về kết quả chi tiết
+               
                 return Ok(new
                 {
-                    AnovaFStatistic = anovaResult.FStatistic,
-                    AnovaPValueApproximation = anovaResult.PValueApproximation,
-                    SignificantDifference = anovaResult.PValueApproximation < 0.05,
-                    Rankings = response
+                    Message = "Xếp hạng pizza đã được tạo thành công!",
+                    AnovaFStatistic = fStatistic,
+                    AnovaPValue = pValue,
+                    SignificantDifference = significant,
+                    PostHocComparisons = postHocResults,
+                    
+                    Rankings = rankings.Select(r => new
+                    {
+                        r.ProductId,
+                        r.ProductName, // Thêm dòng này để trả về tên pizza cho từng productId
+                        AverageRating = Math.Round((decimal)r.AverageRating, 2),
+                        RankPosition = rankings.FindIndex(x => x.ProductId == r.ProductId) + 1,
+                        Period = period,
+                        CreatedDate = DateTime.UtcNow.ToString("yyyy-MM-dd")
+                    })
                 });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Lỗi máy chủ nội bộ: {ex.Message}");
+                return StatusCode(500, $"Lỗi khi tạo xếp hạng: {ex.Message}");
             }
-        }
-
-        private (double FStatistic, double PValueApproximation) PerformAnova(List<GroupedRating> groupedRatings)
-        {
-            // Bước 1: Tính trung bình tổng thể
-            var allRatings = groupedRatings.SelectMany(g => g.Ratings).ToList();
-            if (!allRatings.Any())
-            {
-                throw new InvalidOperationException("Không có đánh giá nào để tính toán ANOVA.");
-            }
-
-            double overallMean = allRatings.Average();
-            int totalN = allRatings.Count;
-            int k = groupedRatings.Count; // Số nhóm
-
-            // Bước 2: Tính Tổng bình phương giữa các nhóm (SSB)
-            double ssb = 0;
-            foreach (var group in groupedRatings)
-            {
-                double groupMean = group.AverageRating;
-                int groupSize = group.RatingCount;
-                ssb += groupSize * Math.Pow(groupMean - overallMean, 2);
-            }
-
-            // Bước 3: Tính Tổng bình phương trong nhóm (SSW)
-            double ssw = 0;
-            foreach (var group in groupedRatings)
-            {
-                double groupMean = group.AverageRating;
-                foreach (var rating in group.Ratings)
-                {
-                    ssw += Math.Pow(rating - groupMean, 2);
-                }
-            }
-
-            // Bước 4: Tính bậc tự do
-            int dfBetween = k - 1;
-            int dfWithin = totalN - k;
-
-            if (dfBetween <= 0 || dfWithin <= 0)
-            {
-                throw new InvalidOperationException("Không đủ dữ liệu để thực hiện ANOVA (bậc tự do không hợp lệ).");
-            }
-
-            // Bước 5: Tính Trung bình bình phương
-            double msb = ssb / dfBetween;
-            double msw = ssw / dfWithin;
-
-            // Bước 6: Tính F-statistic
-            double fStatistic = msb / msw;
-
-            // Kiểm tra giá trị F-statistic
-            if (double.IsNaN(fStatistic) || double.IsInfinity(fStatistic))
-            {
-                throw new InvalidOperationException("Kết quả F-statistic không hợp lệ.");
-            }
-
-            // Bước 7: Tính p-value chính xác bằng MathNet.Numerics
-            var fDistribution = new FDistribution(dfBetween, dfWithin);
-            double pValue = 1 - fDistribution.DistributionFunction(fStatistic);
-
-            return (fStatistic, pValue);
         }
     }
 }

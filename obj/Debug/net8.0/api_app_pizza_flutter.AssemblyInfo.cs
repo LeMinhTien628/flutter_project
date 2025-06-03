@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("api_app_pizza_flutter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+183bf76768856b6db107e049aea01784abe4f52d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36167988b9671f8bee965d0d677778048f2a59ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("api_app_pizza_flutter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("api_app_pizza_flutter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

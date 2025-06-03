@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\api_app_pizza_flutter.props" />
-</Project>

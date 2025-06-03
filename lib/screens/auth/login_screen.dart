@@ -15,7 +15,8 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
+class _LoginScreenState extends State<LoginScreen>
+    with SingleTickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   // ignore: non_constant_identifier_names
@@ -61,11 +62,12 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     });
 
     try {
-      final response = await _AuthService.login(email,password);
+      final response = await _AuthService.login(email, password);
       await _saveToken(response.token); // Lưu token
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đăng nhập thành công')),
-      );
+      print('Token sau khi đăng nhập: ${response.token}'); // In token ra log
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Đăng nhập thành công')));
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MainApp()),
@@ -112,11 +114,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
             ),
             Positioned(
               child: IconButton(
-                icon: const Icon(
-                  Icons.close,
-                  color: Colors.white,
-                  size: 28,
-                ),
+                icon: const Icon(Icons.close, color: Colors.white, size: 28),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -148,7 +146,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   padding: const EdgeInsets.all(24.0),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.9),
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(30),
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.2),
@@ -182,14 +182,29 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           fillColor: Colors.grey[100],
                           labelText: 'Email',
                           hintText: 'Nhập email của bạn',
-                          labelStyle: TextStyle(color: AppColors.textPrimary, fontSize: 14),
-                          hintStyle: TextStyle(color: AppColors.textSecondary, fontSize: 14),
-                          prefixIcon: const Icon(Icons.email, color: AppColors.textSecondary, size: 20),
+                          labelStyle: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 14,
+                          ),
+                          hintStyle: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 14,
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.email,
+                            color: AppColors.textSecondary,
+                            size: 20,
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
+                          contentPadding: const EdgeInsets.fromLTRB(
+                            10,
+                            13,
+                            10,
+                            13,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -203,13 +218,25 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           filled: true,
                           fillColor: Colors.grey[100],
                           labelText: 'Mật khẩu',
-                          labelStyle: TextStyle(color: AppColors.textPrimary, fontSize: 14),
+                          labelStyle: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 14,
+                          ),
                           hintText: 'Nhập mật khẩu',
-                          hintStyle: TextStyle(color: AppColors.textSecondary, fontSize: 14),
-                          prefixIcon: const Icon(Icons.lock, color: AppColors.textSecondary, size: 20),
+                          hintStyle: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 14,
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                            color: AppColors.textSecondary,
+                            size: 20,
+                          ),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                              _isPasswordHidden
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                               color: Colors.black54,
                               size: 20,
                             ),
@@ -223,7 +250,12 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
+                          contentPadding: const EdgeInsets.fromLTRB(
+                            10,
+                            13,
+                            10,
+                            13,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -245,7 +277,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             Text(
                               'Đồng ý với điều khoản sử dụng',
                               style: TextStyle(
-                                color: !_isAgree ? AppColors.textSecondary : AppColors.primary,
+                                color:
+                                    !_isAgree
+                                        ? AppColors.textSecondary
+                                        : AppColors.primary,
                                 fontSize: 12,
                               ),
                             ),
@@ -254,7 +289,10 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: _isLoading ? null : _handleLogin, // Vô hiệu hóa nút khi đang loading
+                        onPressed:
+                            _isLoading
+                                ? null
+                                : _handleLogin, // Vô hiệu hóa nút khi đang loading
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           foregroundColor: Colors.white,
@@ -263,29 +301,32 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: _isLoading
-                            ? const SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2,
+                        child:
+                            _isLoading
+                                ? const SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                                : const Text(
+                                  'Đăng Nhập',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              )
-                            : const Text(
-                                'Đăng Nhập',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                       ),
                       const SizedBox(height: 16),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterScreen(),
+                            ),
                           );
                         },
                         child: const Text(

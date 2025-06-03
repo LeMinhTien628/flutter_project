@@ -1,14 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:app_food_delivery/models/auth_model.dart';
+import 'package:app_food_delivery/core/constants/api_route.dart';
 
 class AuthService {
-  static const String baseUrl =
-      'http://192.168.1.115:5021'; //Không phải cổng local host nữa mà là địa chỉ ipv4 http://192.168.0.110:5021
-  //dotnet run --urls "http://0.0.0.0:5021" chạy bên api để chấp nhận mọi kết nối
-
   Future<LoginReponse> login(String email, String password) async {
-    final url = Uri.parse('$baseUrl/api/Auth/login');
+    final url = Uri.parse(ApiRoute.login);
     final request = LoginRequest(email: email, password: password);
 
     final response = await http.post(
@@ -33,7 +30,7 @@ class AuthService {
     String email,
     String password,
   ) async {
-    final url = Uri.parse('$baseUrl/api/Auth/register');
+    final url = Uri.parse(ApiRoute.register);
     final request = RegisterRequest(
       username: username,
       phone: phone,
@@ -54,6 +51,24 @@ class AuthService {
     } else {
       final error = jsonDecode(response.body)['message'];
       throw Exception(error);
+    }
+  }
+
+  Future<Map<String, dynamic>> getCurrentUser(String token) async {
+    final url = Uri.parse('${ApiRoute.baseUrl}/api/Auth/me');
+    final response = await http.get(
+      url,
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+    );
+    print('GetCurrentUser status: ${response.statusCode}');
+    print('GetCurrentUser body: ${response.body}');
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body) as Map<String, dynamic>;
+    } else {
+      throw Exception('Không thể lấy thông tin người dùng');
     }
   }
 }

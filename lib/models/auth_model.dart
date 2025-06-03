@@ -11,7 +11,7 @@ class LoginReponse {
   final String token;
   LoginReponse({required this.token});
   factory LoginReponse.fromJson(Map<String, dynamic> json) {
-    return LoginReponse(token: json['Token'] ?? '');
+    return LoginReponse(token: json['token'] ?? '');
   }
 }
 
@@ -39,6 +39,6 @@ class RegisterReponse {
   final String token;
   RegisterReponse({required this.token});
   factory RegisterReponse.fromJson(Map<String, dynamic> json) {
-    return RegisterReponse(token: json['Token'] ?? '');
+    return RegisterReponse(token: json['token'] ?? '');
   }
 }

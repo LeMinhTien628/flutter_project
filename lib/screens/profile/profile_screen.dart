@@ -1,7 +1,9 @@
+import 'package:app_food_delivery/api/auth_service.dart';
 import 'package:app_food_delivery/core/constants/app_colors.dart';
 import 'package:app_food_delivery/core/constants/app_strings.dart';
 import 'package:app_food_delivery/screens/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,6 +15,46 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   int qualityNofication = 90;
   bool isButtonLanguage = false;
+
+  Map<String, dynamic>? userInfo;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserInfo();
+  }
+
+  Future<void> _loadUserInfo() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+      print('Token: $token');
+      if (token != null) {
+        try {
+          final user = await AuthService().getCurrentUser(token);
+          print('User: $user');
+          setState(() {
+            userInfo = user;
+            isLoading = false;
+          });
+        } catch (e) {
+          print('Lỗi lấy user: $e');
+          setState(() {
+            isLoading = false;
+          });
+        }
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   //Lây thông tin user từ API
   @override
@@ -65,10 +107,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             width: 1,
                                             color: AppColors.primary,
                                           ),
-                                          borderRadius: BorderRadius.circular(50),
+                                          borderRadius: BorderRadius.circular(
+                                            50,
+                                          ),
                                         ),
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(50),
+                                          borderRadius: BorderRadius.circular(
+                                            50,
+                                          ),
                                           child: Image.asset(
                                             "assets/images/pizza.png",
                                             width: 66,
@@ -83,7 +129,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           bottom: 10,
                                         ),
                                         child: Text(
-                                          "Le Minh Tien",
+                                          isLoading
+                                              ? "Đang tải..."
+                                              : (userInfo?['userName'] ??
+                                                  "Chưa đăng nhập"),
                                           style: TextStyle(
                                             fontSize: 12,
                                             color: AppColors.textPrimary,
@@ -121,9 +170,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             Container(
                                               child: Text(
                                                 "0" +
-                                                 (isButtonLanguage
-                                                  ? " Điểm"
-                                                  : " Point"),
+                                                    (isButtonLanguage
+                                                        ? " Điểm"
+                                                        : " Point"),
                                                 style: TextStyle(
                                                   fontSize: 11,
                                                   color: AppColors.primary,
@@ -213,7 +262,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 buildControl(
                                   "assets/icons/domino.png",
                                   "Thông Tin Cá Nhân",
-                                   "Account Information",
+                                  "Account Information",
                                 ),
 
                                 GestureDetector(
@@ -437,7 +486,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                   ),
                                 ),
-                              
                               ],
                             ),
                           ),
@@ -831,8 +879,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           GestureDetector(
                             onTap: () {
                               Navigator.pushReplacement(
-                                context, 
-                                MaterialPageRoute(builder: (context)=>AuthScreen())
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AuthScreen(),
+                                ),
                               );
                             },
                             child: Container(
@@ -1140,7 +1190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
-                
+
                 Container(
                   margin: EdgeInsets.only(top: 24, right: 16),
                   child: GestureDetector(
@@ -1186,7 +1236,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
-                )
+                ),
                 // Opacity(
                 //   opacity: 0.0,
                 //   child: Container(child: Icon(Icons.chevron_left)),
@@ -1255,7 +1305,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget buildControl(String icon, String nameControlEn, String nameControlVn ){
+  Widget buildControl(String icon, String nameControlEn, String nameControlVn) {
     return GestureDetector(
       onTap: () {
         print("Text");
@@ -1270,15 +1320,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(
-                      right: 4,
-                    ),
+                    margin: EdgeInsets.only(right: 4),
                     child: Image.asset(
                       icon,
                       width: 14,
                       height: 14,
                       fit: BoxFit.fill,
-                      color:AppColors.textSecondary,
+                      color: AppColors.textSecondary,
                     ),
                   ),
                   Container(
@@ -1287,10 +1335,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       isButtonLanguage ? nameControlVn : nameControlEn,
                       style: TextStyle(
                         fontSize: 12,
-                        color:
-                            AppColors.textSecondary,
-                        fontWeight:
-                            FontWeight.normal,
+                        color: AppColors.textSecondary,
+                        fontWeight: FontWeight.normal,
                       ),
                     ),
                   ),
@@ -1308,6 +1354,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
-
   }
 }

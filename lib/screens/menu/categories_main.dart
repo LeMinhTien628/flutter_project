@@ -1,110 +1,71 @@
-  import 'package:app_food_delivery/core/constants/app_colors.dart';
-import 'package:app_food_delivery/screens/menu/categories_sub.dart';
 import 'package:flutter/material.dart';
+import 'package:app_food_delivery/core/constants/app_colors.dart';
+import 'package:app_food_delivery/models/category_model.dart';
 
 class CategoriesMain extends StatefulWidget {
-  const CategoriesMain({super.key});
+  final List<CategoryModel> categories;
+  final int selectedIndex;
+  final ValueChanged<int> onTap;
+  final List<String> icons;
+
+  const CategoriesMain({
+    Key? key,
+    required this.categories,
+    required this.selectedIndex,
+    required this.onTap,
+    required this.icons,
+  }) : super(key: key);
 
   @override
   State<CategoriesMain> createState() => _CategoriesMainState();
 }
 
 class _CategoriesMainState extends State<CategoriesMain> {
-  int selectedItem = 0;
-  //Danh sách category lấy từ API
-  List<String> categoriesName = [
-    "PIZZA", "CHICKEN", "PASTA", "APPETIZER", "DESSERT", "DRINKS"
-  ];
-  List<String> categoriesImage = [
-    "assets/images/category_pizza.png",
-    "assets/images/category_chicken.png",
-    "assets/images/category_pasta.png",
-    "assets/images/category_appetizer.png",
-    "assets/images/category_desser.png",
-    "assets/images/category_drink.png",
-  ];
-
-  //Lấy danh sách sản phẩm từ API theo category
-
-  //Lọc theo category
-
-  
-
-  void updateSelectedItem(int index) {
-    setState(() {
-      selectedItem = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.zero,
-      child: Column(
-        children: [
-          Container(
-            height: (selectedItem == 0 || selectedItem == 3) ? 62 : 70,
-            decoration: BoxDecoration(
-              color: AppColors.background
-            ),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              cacheExtent: 500, // Tải trước nội dung cách 500px
-              primary: true,
-              itemCount: categoriesName.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedItem = index;
-                      // Xử lí listview chỗ này
-                      print(selectedItem);
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(left: 16, right: 16, top: 8),
-                    decoration: BoxDecoration(
-                      // color: Colors.amberAccent
+      height: 70,
+      color: AppColors.background,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        physics: BouncingScrollPhysics(),
+        itemCount: widget.categories.length,
+        itemBuilder: (ctx, index) {
+          final cat = widget.categories[index];
+          final isSelected = index == widget.selectedIndex;
+          return GestureDetector(
+            onTap: () => widget.onTap(index),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                children: [
+                  Image.asset(
+                    widget.icons[index],
+                    width: 30,
+                    height: 30,
+                    color: isSelected ? AppColors.textRed : AppColors.textSecondary,
+                  ),
+                  SizedBox(height: 6),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      cat.categoryName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: isSelected ? AppColors.textRed : AppColors.textSecondary,
+                      ),
                     ),
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Image.asset(
-                            categoriesImage[index],
-                            width: 24,
-                            height: 24,
-                            fit: BoxFit.fill,
-                            color: selectedItem == index ? AppColors.textRed : AppColors.textSecondary,
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            categoriesName[index],
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: selectedItem == index ? Colors.red : AppColors.textSecondary,
-                            ),
-                            textAlign: TextAlign.center,
-                          )
-                        ),
-                      ],
-                    ),
-                  )
-                );
-              },
+                  ),
+                ],
+              ),
             ),
-          ),
-
-          CategoriesSub(selectedItem: selectedItem,)
-  
-        ],
+          );
+        },
       ),
     );
-    
-    
   }
 }

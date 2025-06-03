@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'package:app_food_delivery/models/auth_model.dart';
 import 'package:http/http.dart' as http;
 
-
 class ApiService {
   static const String baseUrl =
-      'http://192.168.0.110:5021'; //Không phải cổng local host nữa mà là địa chỉ ipv4 http://192.168.0.110:5021
+      'http://192.168.1.115:5021'; //Không phải cổng local host nữa mà là địa chỉ ipv4 http://192.168.0.110:5021
   //dotnet run --urls "http://0.0.0.0:5021" chạy bên api để chấp nhận mọi kết nối
 
   Future<LoginReponse> login(String email, String password) async {

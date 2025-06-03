@@ -4,7 +4,6 @@ import 'package:app_food_delivery/core/constants/app_strings.dart';
 import 'package:app_food_delivery/core/utils/format_utils.dart';
 import 'package:app_food_delivery/screens/feedback/feedback_screen.dart';
 import 'package:app_food_delivery/screens/home/banner_slider.dart';
-import 'package:app_food_delivery/screens/home/best_seller.dart';
 import 'package:app_food_delivery/screens/product/product_detail_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(0),
-      physics: BouncingScrollPhysics(),
+      physics: AlwaysScrollableScrollPhysics(),
       reverse: true,
       //controller: ,
       child: Container(
@@ -52,8 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const Text(
                 "${AppStrings.appName} Say Hello!",
                 style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                   color: AppColors.textSecondary,
                 ),
                 textAlign: TextAlign.center,
@@ -173,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // Button Delivery - Carry Out
                   Positioned(
-                    left: 40,
+                    left: 80,
                     child: Container(
                       decoration: BoxDecoration(
                         color: AppColors.backgroudGreyBland,
@@ -390,16 +389,16 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index){
           return GestureDetector(
             onTap: (){
-              Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => ProductDetailScreen()),
-              );
+              // Navigator.push(
+              //   context, 
+              //   MaterialPageRoute(builder: (context) => ProductDetailScreen()),
+              // );
             },
             onDoubleTap: (){
-              Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => ProductDetailScreen()),
-              );
+              // Navigator.push(
+              //   context, 
+              //   MaterialPageRoute(builder: (context) => ProductDetailScreen()),
+              // );
             },
             child: Container(
               decoration: BoxDecoration(

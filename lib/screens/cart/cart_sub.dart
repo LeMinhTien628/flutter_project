@@ -11,7 +11,7 @@ class CartSub extends StatefulWidget {
 }
 
 class _CartSubState extends State<CartSub> {
-   int qualityCart = 100;
+   int qualityCart = 0;
   
   @override
   Widget build(BuildContext context) {

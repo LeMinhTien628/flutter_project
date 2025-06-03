@@ -78,7 +78,8 @@ class _BannerSliderState extends State<BannerSlider> {
                 width: double.infinity,
                 margin: EdgeInsets.zero,
                 padding: EdgeInsets.zero,
-                height: 150,
+                // height: 300,
+                height: 250,
                 child: PageView.builder(
                   controller: _pageController,
                   onPageChanged: (index){
